@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KONVEKSI JERSEY ECO SPORT - Katalog & Admin</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;500&display=swap');
+        :root { 
+            --hitam: #0A0A0A; --merah: #E10600; --putih: #FFFFFF; --biru: #00F0FF; --abu: #1A1A1A; 
+            --bg-admin: #161b22; --card-admin: #1c2128; --border-admin: #30363d; --input-admin: #0d1117; --text-admin: #c9d1d9; 
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--hitam); color: var(--putih); }
+        h1, h2, h3 { font-family: 'Rajdhani', sans-serif; text-transform: uppercase; }
+
+        #view-catalog { min-height: 100vh; background: radial-gradient(circle at 50% 0%, #1a1a1a 0%, var(--hitam) 60%); padding-bottom: 60px; }
+        .catalog-header { text-align: center; padding: 120px 20px 50px; position: relative; overflow: hidden; border-bottom: 2px solid var(--merah); }
+        .catalog-header::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 240, 255, 0.03) 10px, rgba(0, 240, 255, 0.03) 20px); z-index: 0; }
+        .catalog-header h1 { font-family: 'Audiowide', cursive; font-size: 60px; position: relative; z-index: 2; color: #fff; text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(225,6,0,.8), 0 1px 3px rgba(225,6,0,.8), 0 3px 5px rgba(225,6,0,.5), 0 5px 10px rgba(225,6,0,.4), 0 10px 10px rgba(225,6,0,.3), 0 20px 20px rgba(225,6,0,.2); line-height: 1.1; letter-spacing: 2px; }
+        .catalog-header h1 span { color: #fff; text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(225,6,0,.8), 0 1px 3px rgba(225,6,0,.8), 0 3px 5px rgba(225,6,0,.5), 0 5px 10px rgba(225,6,0,.4), 0 10px 10px rgba(225,6,0,.3), 0 20px 20px rgba(225,6,0,.2); }
+        .hero-subtitle { color: var(--biru); margin-top: 20px; position: relative; z-index: 2; font-family: 'Rajdhani'; font-size: 24px; font-weight: 700; letter-spacing: 4px; }
+        .hero-desc { color: #aaa; max-width: 600px; margin: 20px auto 0; position: relative; z-index: 2; font-size: 16px; line-height: 1.6; }
+
+        .header-logos { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+        .header-logo { position: absolute; top: 25px; height: 80px; object-fit: contain; filter: drop-shadow(0 10px 15px rgba(225, 6, 0, 0.5)); animation: logoSpin 8s linear infinite; pointer-events: auto; }
+        .header-logo:first-child { left: 30px; }
+        .header-logo:nth-child(2) { right: 30px; animation-delay: -4s; }
+        @keyframes logoSpin { 0% { transform: rotateY(0deg); filter: drop-shadow(0 10px 15px rgba(225, 6, 0, 0.5)); } 50% { filter: drop-shadow(0 25px 25px rgba(0, 240, 255, 0.4)); } 100% { transform: rotateY(360deg); filter: drop-shadow(0 10px 15px rgba(225, 6, 0, 0.5)); } }
+
+        .top-info-bar { text-align: center; padding: 12px 20px; background: #050505; border-bottom: 1px solid #222; font-size: 13px; color: #aaa; }
+        .top-info-bar p { margin: 4px 0; }
+        .top-info-bar a { color: var(--biru); text-decoration: none; font-weight: 600; }
+        .top-info-bar a:hover { color: var(--putih); }
+
+        .top-social-bar { text-align: center; padding: 15px 20px; background: #111; border-bottom: 1px solid #222; }
+        .social-links { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .social-icon { text-decoration: none; color: #aaa; background: var(--hitam); border: 1px solid #333; padding: 10px 20px; border-radius: 30px; font-family: 'Rajdhani'; font-weight: 700; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; transition: 0.3s; }
+        .social-icon:hover { transform: translateY(-3px); border-color: transparent; }
+        .social-icon.fb:hover { background: #1877F2; color: #fff; box-shadow: 0 5px 15px rgba(24, 119, 242, 0.3); }
+        .social-icon.ig:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; box-shadow: 0 5px 15px rgba(225, 48, 108, 0.3); }
+        .social-icon.tt:hover { background: #010101; color: #fff; border: 1px solid #69C9D0; box-shadow: 0 5px 15px rgba(105, 201, 208, 0.3); }
+        .social-icon.web:hover { background: var(--merah); color: #fff; box-shadow: 0 5px 15px rgba(225, 6, 0, 0.3); }
+
+        .promo-banner { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 30px 5%; max-width: 1400px; margin: 0 auto; }
+        .promo-card { flex: 1; min-width: 300px; background: linear-gradient(135deg, #1a1a1a, #0f0f0f); border-left: 4px solid var(--merah); padding: 25px; border-radius: 8px; display: flex; align-items: center; gap: 20px; transition: 0.3s; cursor: pointer; }
+        .promo-card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(225, 6, 0, 0.2); background: linear-gradient(135deg, #222, #111); }
+        .promo-icon { font-size: 40px; }
+        .promo-text h3 { color: var(--merah); font-size: 20px; margin-bottom: 5px; }
+        .promo-text p { color: #ccc; font-size: 14px; }
+
+        .trust-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 30px 20px; background: #111; border-bottom: 1px solid #333; border-top: 1px solid #333; }
+        .trust-item { display: flex; align-items: center; gap: 10px; color: #ccc; font-family: 'Rajdhani'; font-weight: 600; font-size: 16px; }
+
+        .section-title { text-align: center; margin: 60px 0 40px; padding: 0 20px; }
+        .section-title h2 { font-family: 'Audiowide', cursive; font-size: 32px; color: var(--putih); }
+        .section-title h2 span { color: var(--merah); }
+        .section-title p { color: #666; margin-top: 10px; font-size: 14px; }
+        .section-title::after { content: ''; display: block; width: 60px; height: 4px; background: var(--biru); margin: 15px auto 0; border-radius: 2px; }
+
+        .video-container { max-width: 800px; margin: 0 auto 60px; border: 2px solid var(--merah); border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
+        .video-container video { width: 100%; display: block; }
+
+        .fabric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 0 5% 40px; max-width: 1400px; margin: 0 auto; }
+        .fabric-card { background: #141414; border: 1px solid #222; border-radius: 10px; overflow: hidden; transition: 0.3s; text-align: center; }
+        .fabric-card:hover { border-color: var(--merah); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(225, 6, 0, 0.15); }
+        .fabric-img { width: 100%; height: 200px; object-fit: cover; border-bottom: 2px solid var(--biru); transition: transform 0.5s; }
+        .fabric-card:hover .fabric-img { transform: scale(1.05); }
+        .fabric-info { padding: 15px; }
+        .fabric-info h3 { color: var(--putih); margin-bottom: 8px; font-size: 18px; }
+        .fabric-info p { color: #aaa; font-size: 13px; line-height: 1.5; }
+
+        .map-container { max-width: 900px; margin: 0 auto 60px; border: 2px solid var(--merah); border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
+        .map-container iframe { width: 100%; height: 400px; border: 0; display: block; filter: grayscale(20%); }
+
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; padding: 0 5% 40px; max-width: 1400px; margin: 0 auto; }
+        .product-card { background: #141414; border: 1px solid #222; border-radius: 10px; overflow: hidden; transition: 0.3s; cursor: pointer; position: relative; }
+        .product-card:hover { border-color: var(--biru); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 240, 255, 0.1); }
+        .product-img { width: 100%; height: 250px; object-fit: cover; border-bottom: 2px solid var(--merah); transition: transform 0.6s ease-in-out; }
+        .product-card:hover .product-img { transform: scale(1.1); }
+        .product-info { padding: 15px; }
+        .product-cat { color: var(--biru); font-family: 'Rajdhani'; font-weight: 600; font-size: 13px; }
+        .product-code { font-size: 11px; color: #666; margin-bottom: 8px; }
+        .product-price { font-family: 'Rajdhani'; font-size: 20px; font-weight: 700; color: var(--putih); margin-top: 5px; }
+        .order-btn { display: block; width: 100%; margin-top: 12px; background: var(--merah); color: white; border: none; padding: 10px; font-family: 'Rajdhani'; font-size: 14px; font-weight: bold; border-radius: 5px; cursor: pointer; }
+        .order-btn:hover { background: #ff1a1a; }
+        .stock-badge { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.8); color: var(--biru); padding: 4px 8px; border-radius: 4px; font-size: 10px; border: 1px solid var(--biru); z-index: 2; }
+
+        .closing-cta { text-align: center; padding: 60px 20px; background: linear-gradient(45deg, #111, #050505); border-top: 1px solid #222; border-bottom: 1px solid #222; margin-top: 40px; }
+        .closing-cta h2 { font-family: 'Audiowide', cursive; font-size: 28px; margin-bottom: 15px; }
+        .closing-cta p { color: #aaa; max-width: 500px; margin: 0 auto 25px; }
+
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 9999; justify-content: center; align-items: flex-start; padding: 20px 0; overflow-y: auto; }
+        .modal-content { background: #111; border: 1px solid var(--biru); padding: 30px; border-radius: 10px; width: 90%; max-width: 400px; position: relative; margin: auto; max-height: 90vh; overflow-y: auto; }
+        .modal-content h2 { color: var(--biru); margin-bottom: 20px; text-align: center; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 12px; color: #ccc; margin-bottom: 5px; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; background: #222; border: 1px solid #444; color: white; border-radius: 5px; font-family: 'Inter', sans-serif; }
+        .submit-btn { display: block; width: 100%; background: #25D366; color: white; border: none; padding: 14px; font-family: 'Rajdhani'; font-size: 18px; font-weight: bold; border-radius: 5px; cursor: pointer; margin-top: 10px; text-decoration: none; text-align: center; }
+        .submit-btn:hover { background: #128C7E; }
+        .close-modal { position: absolute; top: 10px; right: 20px; color: #fff; font-size: 24px; cursor: pointer; z-index: 10; }
+
+        #admin-access-btn { position: fixed; bottom: 20px; left: 20px; background: #111; color: var(--biru); border: 1px solid #333; padding: 12px 18px; font-family: 'Rajdhani'; font-size: 14px; font-weight: 700; border-radius: 5px; cursor: pointer; z-index: 1000; opacity: 0.5; }
+        #admin-access-btn:hover { opacity: 1; border-color: var(--biru); }
+
+        #view-admin { display: none; background-color: var(--bg-admin); min-height: 100vh; }
+        #admin-login { display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; gap: 20px; background-color: var(--bg-admin); }
+        #admin-login h1 { font-family: 'Audiowide', cursive; color: var(--biru); }
+        #admin-login input { padding: 15px; width: 300px; background: var(--input-admin); border: 1px solid var(--border-admin); color: var(--text-admin); border-radius: 5px; font-size: 16px; text-align: center; }
+        #admin-login input:focus { outline: none; border-color: var(--biru); }
+        #admin-login button { padding: 15px 30px; background: var(--merah); color: white; border: none; border-radius: 5px; cursor: pointer; font-family: 'Rajdhani'; font-size: 18px; font-weight: bold; }
+        #admin-login button:hover { background: #ff1a1a; }
+
+        .sidebar { width: 250px; background: var(--card-admin); height: 100vh; border-right: 1px solid var(--border-admin); display: flex; flex-direction: column; position: fixed; left: 0; top: 0; }
+        .sidebar-header { padding: 30px 20px; border-bottom: 1px solid var(--border-admin); text-align: center; }
+        .sidebar-header h2 { font-family: 'Audiowide', cursive; color: var(--putih); font-size: 20px; }
+        .sidebar-header span { color: var(--merah); }
+        .menu-item { padding: 15px 25px; color: var(--text-admin); cursor: pointer; border-left: 3px solid transparent; transition: 0.2s; }
+        .menu-item:hover { background: #262b33; color: var(--putih); }
+        .menu-item.active { background: #262b33; color: var(--biru); border-left: 3px solid var(--merah); font-weight: 600; }
+        
+        .main-admin { margin-left: 250px; padding: 30px; min-height: 100vh; color: var(--text-admin); }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 30px; }
+        .stat-card { background: var(--card-admin); padding: 20px; border-radius: 10px; border-top: 3px solid var(--biru); display: flex; justify-content: space-between; border: 1px solid var(--border-admin); }
+        .stat-card.red { border-top-color: var(--merah); }
+        .stat-card h3 { color: var(--putih); }
+        .stat-card p { color: #8b949e; font-size: 14px; }
+        
+        .card-admin { background: var(--card-admin); border-radius: 10px; padding: 20px; border: 1px solid var(--border-admin); margin-bottom: 20px; overflow-x: auto; }
+        .card-header { display: flex; justify-content: space-between; margin-bottom: 20px; border-bottom: 1px solid var(--border-admin); padding-bottom: 15px; }
+        .card-header h1, .card-header h2 { color: var(--putih); }
+        .card-header p { color: #8b949e; font-size: 14px; }
+
+        table { width: 100%; border-collapse: collapse; min-width: 800px; }
+        th { padding: 15px; text-align: left; font-size: 12px; color: var(--biru); background: #262b33; border-bottom: 2px solid var(--border-admin); text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
+        td { padding: 15px; text-align: left; border-bottom: 1px solid var(--border-admin); font-size: 14px; color: var(--text-admin); vertical-align: middle; white-space: nowrap; }
+        
+        .badge { padding: 5px 10px; border-radius: 4px; font-size: 11px; font-weight: bold; }
+        .badge-new { background: rgba(225, 6, 0, 0.2); color: #ff4c4c; border: 1px solid #ff4c4c; }
+        .badge-done { background: rgba(0, 240, 255, 0.15); color: var(--biru); border: 1px solid var(--biru); }
+        
+        .btn-action { padding: 8px 12px; background: #30363d; color: var(--putih); border: 1px solid #4b5360; border-radius: 4px; cursor: pointer; font-size: 12px; margin-right: 5px; margin-top: 5px; text-decoration: none; display: inline-block; transition: 0.2s; }
+        .btn-action:hover { background: #3d444d; border-color: #8b949e; }
+        .btn-back { background: transparent; border: 1px solid var(--biru); color: var(--biru); }
+        .btn-back:hover { background: rgba(0, 240, 255, 0.1); }
+        .btn-refresh { background: #238636; border-color: #2ea043; color: #fff; }
+        .btn-refresh:hover { background: #2ea043; }
+        .btn-dummy { background: #d29922; border-color: #e3b341; color: #000; }
+        .btn-pdf { background: #da3633; border-color: #f85149; color: #fff; }
+        .btn-view { background: #1f6feb; border-color: #388bfd; color: #fff; }
+        .btn-danger { background: #da3633; border-color: #f85149; color: #fff; }
+        .btn-csv { background: #8957e5; border-color: #a371f7; color: #fff; }
+        
+        .empty-state { text-align: center; padding: 40px; color: #8b949e; }
+        .detail-img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
+        .detail-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border-admin); color: var(--text-admin); }
+
+        .size-guide-section { max-width: 800px; margin: 0 auto 60px; padding: 0 20px; overflow-x: auto; }
+        .size-table { width: 100%; border-collapse: collapse; background: #141414; border: 1px solid #222; border-radius: 8px; overflow: hidden; min-width: 500px; }
+        .size-table th, .size-table td { padding: 12px 15px; border-bottom: 1px solid #222; color: #ccc; text-align: center; font-size: 14px; }
+        .size-table th { background: #1a1a1a; color: var(--biru); font-size: 13px; text-transform: uppercase; }
+        .size-table tr:hover td { background: #1a1a1a; }
+
+        .toast-notification { position: fixed; bottom: 20px; right: 20px; padding: 15px 25px; border-radius: 8px; color: white; font-weight: bold; z-index: 99999; transform: translateX(150%); transition: transform 0.4s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .toast-notification.show { transform: translateX(0); }
+        
+        .filter-bar { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; align-items: center; }
+        .filter-bar input, .filter-bar select { flex: 1; min-width: 180px; padding: 10px 15px; background: var(--input-admin); border: 1px solid var(--border-admin); color: var(--text-admin); border-radius: 5px; font-size: 14px; }
+        .filter-bar input:focus, .filter-bar select:focus { outline: none; border-color: var(--biru); }
+        
+        .main-admin .form-group label { color: #c9d1d9; font-weight: 500; }
+        .main-admin .form-group input, .main-admin .form-group select, .main-admin .form-group textarea { 
+            width: 100%; padding: 12px; background: var(--input-admin); border: 1px solid var(--border-admin); color: var(--putih); border-radius: 5px; font-family: 'Inter', sans-serif; 
+        }
+        .main-admin .form-group input:focus, .main-admin .form-group select:focus, .main-admin .form-group textarea:focus { outline: none; border-color: var(--biru); }
+
+        @media (max-width: 768px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .main-admin { margin-left: 0; }
+            .sidebar { width: 100%; height: auto; position: relative; }
+            .catalog-header { padding: 90px 15px 40px; }
+            .catalog-header h1 { font-size: 32px; }
+            .hero-subtitle { font-size: 18px; }
+            .header-logo { height: 45px; top: 15px; }
+            .header-logo:first-child { left: 15px; }
+            .header-logo:nth-child(2) { right: 15px; }
+            .fabric-grid { grid-template-columns: repeat(2, 1fr); }
+            table { min-width: 600px; }
+        }
+    </style>
+</head>
+<body>
+
+    <button id="admin-access-btn" onclick="switchView('admin')">🔒 Admin Panel</button>
+
+    <div id="view-catalog">
+        <header class="catalog-header">
+            <div class="header-logos">
+                <img src="https://z-cdn-media.chatglm.cn/files/6e676aa1-7016-4b6c-82e1-f47d96e6dbe2.png?auth_key=1884171185-923e9227d5604f89a12c7e81ea5e595a-0-24615c8f9a4d14565d93c6d4f7a15af1" alt="Logo" class="header-logo">
+                <img src="https://z-cdn-media.chatglm.cn/files/841e7ae3-6677-4fce-a0de-fed191ddd8af.png?auth_key=1884171185-63c9ed10451f4f96919b9b1de3a614a3-0-30e0f219ba7a196f6341207f80db16e9" alt="Logo" class="header-logo">
+            </div>
+            <h1>KONVEKSI JERSEY ECO <span>SPORT</span></h1>
+            <div class="hero-subtitle">Custom Jersey Premium & Bergaransi</div>
+            <p class="hero-desc">Wujudkan jersey impian tim Anda dengan desain bebas, bahan premium, dan harga bersahabat.</p>
+        </header>
+
+        <div class="top-info-bar">
+            <p>📍 Ruko Pak Eko, Jl. Raya Prabumulih, OKU Timur, Sumatera Selatan</p>
+            <p>📞 Admin 1: <a href="https://wa.me/6281212514747" target="_blank">0812-1251-4747</a> &nbsp;|&nbsp; 📞 Admin 2: <a href="https://wa.me/6281998877665" target="_blank">0819-9887-7665</a></p>
+        </div>
+
+        <div class="top-social-bar">
+            <div class="social-links">
+                <a href="https://facebook.com/" target="_blank" class="social-icon fb">📘 Facebook</a>
+                <a href="https://instagram.com/" target="_blank" class="social-icon ig">📸 Instagram</a>
+                <a href="https://tiktok.com/" target="_blank" class="social-icon tt">🎵 TikTok</a>
+                <a href="https://website.com/" target="_blank" class="social-icon web">🌐 Website</a>
+            </div>
+        </div>
+
+        <div class="promo-banner">
+            <div class="promo-card" onclick="showPromo('tim')"><div class="promo-icon">🔥</div><div class="promo-text"><h3>PROMO TIM</h3><p>Diskon 10% khusus pemesanan minimal 11 pcs.</p></div></div>
+            <div class="promo-card" onclick="showPromo('bahan')"><div class="promo-icon">👕</div><div class="promo-text"><h3>BAHAN BERKUALITAS</h3><p>Material premium adem, menyerap keringat, nyaman dipakai.</p></div></div>
+            <div class="promo-card" onclick="showPromo('express')"><div class="promo-icon">⚡</div><div class="promo-text"><h3>EXPRESS SERVICE</h3><p>Butuh cepat? Layanan pengerjaan 2 hari jadi.</p></div></div>
+        </div>
+
+        <div class="trust-badges">
+            <div class="trust-item">⚡ Pengerjaan Cepat</div>
+            <div class="trust-item">🛡️ Garansi Tidak Luntur</div>
+            <div class="trust-item">📦 Tanpa Minimal Order</div>
+            <div class="trust-item">💎 Bahan Premium</div>
+        </div>
+
+        <div class="section-title"><h2>PROSES <span>PRODUKSI</span></h2><p>Lihat bagaimana kami membuat jersey premium Anda dengan presisi.</p></div>
+        <div class="video-container"><video controls muted loop autoplay><source src="https://youtube.com/shorts/jACuu_Q_1Z0?si=7MA70lq5mtgW-5cl.mp4" type="video/mp4">Browser Anda tidak mendukung tag video.</video></div>
+
+        <div class="section-title"><h2>PANDUAN <span>UKURAN</span></h2><p>Pastikan ukuran yang tepat untuk kenyamanan maksimal (dalam cm).</p></div>
+        <div class="size-guide-section"><table class="size-table"><thead><tr><th>Ukuran</th><th>Lebar Dada</th><th>Panjang Badan</th><th>Panjang Lengan</th></tr></thead><tbody><tr><td>XS</td><td>46 cm</td><td>64 cm</td><td>18 cm</td></tr><tr><td>S</td><td>48 cm</td><td>67 cm</td><td>19 cm</td></tr><tr><td>M</td><td>50 cm</td><td>70 cm</td><td>20 cm</td></tr><tr><td>L</td><td>52 cm</td><td>73 cm</td><td>21 cm</td></tr><tr><td>XL</td><td>54 cm</td><td>76 cm</td><td>22 cm</td></tr><tr><td>XXL</td><td>56 cm</td><td>79 cm</td><td>23 cm</td></tr><tr><td>3XL</td><td>58 cm</td><td>82 cm</td><td>24 cm</td></tr></tbody></table></div>
+
+        <div class="section-title"><h2>ANEKA <span>KAIN PREMIUM</span></h2><p>Pilihan bahan terbaik untuk kenyamanan dan performa maksimal di lapangan.</p></div>
+        <div class="fabric-grid">
+            <div class="fabric-card"><img src="https://picsum.photos/seed/kain-dryfit/400/300" alt="Kain Dry-Fit" class="fabric-img"><div class="fabric-info"><h3>Dry-Fit Pro</h3><p>Bahan ringan, menyerap keringat cepat, sangat adem untuk aktivitas berat.</p></div></div>
+            <div class="fabric-card"><img src="https://picsum.photos/seed/kain-mesh/400/300" alt="Kain Mesh" class="fabric-img"><div class="fabric-info"><h3>Mesh Ventilation</h3><p>Sirkulasi udara maksimal dengan lubang-lubang mikro, menjaga suhu tubuh.</p></div></div>
+            <div class="fabric-card"><img src="https://picsum.photos/seed/kain-lycra/400/300" alt="Kain Lycra" class="fabric-img"><div class="fabric-info"><h3>Elastic Lycra</h3><p>Melarat sempurna mengikuti gerakan tubuh, nyaman dan tidak membatasi gerak.</p></div></div>
+            <div class="fabric-card"><img src="https://picsum.photos/seed/kain-interlock/400/300" alt="Kain Interlock" class="fabric-img"><div class="fabric-info"><h3>Premium Interlock</h3><p>Tekstur tebal dan halus, jatuh sempurna, eksklusif untuk jersey grade ori.</p></div></div>
+        </div>
+
+        <div class="section-title"><h2>KOLEKSI <span>JERSEY PILIHAN</span></h2><p>32 desain siap pakai. Klik pesan, langsung terhubung ke Admin!</p></div>
+        <div class="product-grid" id="productGrid"></div>
+
+        <div class="section-title"><h2>LOKASI <span>KAMI</span></h2><p>Kunjungi toko fisik kami untuk konsultasi desain dan lihat langsung sample bahan.</p></div>
+        <div class="map-container"><iframe src="https://maps.google.com/maps?q=KONVEKSI+JERSEY+ECO+SPORT+-4.2660535,104.452827&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe></div>
+
+        <div class="closing-cta">
+            <h2>SIAP MEMBUAT JERSEY IMPIAN ANDA?</h2>
+            <p>Tim kami siap membantu mewujudkan desain terbaik untuk komunitas, sekolah, atau instansi Anda.</p>
+            <a href="https://wa.me/6281212514747?text=Halo%20Admin" target="_blank" class="order-btn" style="max-width: 300px; margin: 0 auto;">💬 Konsultasi Gratis</a>
+        </div>
+    </div>
+
+    <div id="promoModal" class="modal-overlay"><div class="modal-content"><span class="close-modal" onclick="closePromo()">×</span><h2 id="promoTitle"></h2><div id="promoBody" style="text-align: center; color: #ccc; line-height: 1.6; margin-bottom: 20px;"></div><a id="promoWaLink" href="#" target="_blank" class="submit-btn">Klaim Promo via WhatsApp</a></div></div>
+
+    <div id="orderModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeOrderModal()">×</span>
+            <h2>FORM PEMESANAN</h2>
+            <input type="hidden" id="modalProductImg">
+            <div class="form-group"><label>Nama Produk</label><input type="text" id="modalProductName" readonly style="color: var(--biru); font-weight: bold;"></div>
+            <div class="form-group">
+                <label>Pilih Admin Tujuan</label>
+                <select id="custAdmin">
+                    <option value="6281212514747">Admin 1 (0812-1251-4747)</option>
+                    <option value="6281998877665">Admin 2 (0819-9887-7665)</option>
+                </select>
+            </div>
+            <div class="form-group"><label>Nama Pemesan</label><input type="text" id="custName" placeholder="Nama Anda"></div>
+            <div class="form-group"><label>No WhatsApp Aktif</label><input type="text" id="custPhone" placeholder="08xxxxxxxxxx"></div>
+            <div class="form-group"><label>Ukuran</label><select id="custSize"><option value="XS">XS</option><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option><option value="XXL">XXL</option><option value="3XL">3XL</option></select></div>
+            <div class="form-group"><label>Jumlah Pesanan</label><input type="number" id="custQty" value="1" min="1"></div>
+            <button id="waSubmitBtn" class="submit-btn" onclick="submitOrder()">Kirim Pesanan via WhatsApp</button>
+        </div>
+    </div>
+
+    <div id="view-admin">
+        <div id="admin-login">
+            <h1>🔒 MASUK ADMIN</h1><p style="color:#8b949e; margin-bottom: 20px;">Masukkan sandi untuk mengakses dashboard</p>
+            <input type="password" id="adminPassInput" placeholder="Sandi Admin" onkeyup="if(event.keyCode===13) checkAdminPass()">
+            <button onclick="checkAdminPass()">MASUK</button>
+            <button onclick="switchView('catalog')" style="background:transparent; border:1px solid #666; margin-top:10px; color:#ccc;">Kembali</button>
+        </div>
+
+        <div id="admin-content" style="display:none;">
+            <div class="sidebar">
+                <div class="sidebar-header"><h2>ECO <span>SPORT</span></h2></div>
+                <div class="sidebar-menu" style="flex-grow:1; padding: 20px 0;">
+                    <div class="menu-item active" onclick="switchTab('dashboard', this)">📊 Dashboard</div>
+                    <div class="menu-item" onclick="switchTab('orders', this)">📦 Pesanan</div>
+                    <div class="menu-item" onclick="switchView('catalog')">🏠 Katalog</div>
+                </div>
+            </div>
+
+            <div class="main-admin">
+                <div id="admin-dashboard">
+                    <div class="card-header" style="margin-bottom:30px;">
+                        <div><h1>Dashboard Overview</h1><p>Selamat datang kembali, Admin!</p></div>
+                        <div>
+                            <button class="btn-action btn-back" onclick="switchView('catalog')">← Kembali</button>
+                            <button class="btn-action btn-danger" onclick="clearAllStorage()">🧹 Hapus Semua Data</button>
+                        </div>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card red"><div><h3 id="totalOrders">0</h3><p>Total Pesanan</p></div>🛒</div>
+                        <div class="stat-card"><div><h3 id="newOrders">0</h3><p>Pesanan Baru</p></div>🔔</div>
+                        <div class="stat-card"><div><h3 id="totalPcs">0</h3><p>Total Item</p></div>👕</div>
+                        <div class="stat-card red"><div><h3 id="totalRevenue">Rp 0</h3><p>Omzet</p></div>💰</div>
+                    </div>
+                    <div class="card-admin"><div class="card-header"><h2>Pesanan Terbaru</h2><div><button class="btn-action btn-refresh" onclick="loadOrders()">🔄 Refresh</button><button class="btn-action" onclick="switchTab('orders', document.querySelectorAll('.menu-item')[1])">Lihat Semua</button></div></div><table><thead><tr><th>ID</th><th>Produk</th><th>Pelanggan</th><th>Ukuran</th><th>Qty</th><th>Status</th></tr></thead><tbody id="recentOrdersTable"></tbody></table></div>
+                </div>
+
+                <div id="admin-orders" style="display: none;">
+                    <div class="card-header" style="margin-bottom:30px;"><div><h1>Manajemen Pesanan</h1><p>Kelola & filter semua pesanan</p></div><button class="btn-action btn-back" onclick="switchView('catalog')">← Kembali</button></div>
+                    <div class="filter-bar"><input type="text" id="searchOrder" placeholder="🔍 Cari nama / produk..." onkeyup="loadOrders()"><select id="filterStatus" onchange="loadOrders()"><option value="all">Semua Status</option><option value="Baru">🟢 Baru</option><option value="Selesai">☑️ Selesai</option></select><button class="btn-action btn-csv" onclick="exportCSV()">📥 Export CSV</button></div>
+                    <div class="card-admin"><div class="card-header"><h2>Tabel Pesanan</h2><div><button class="btn-action btn-dummy" onclick="addDummyData()">🧪 Data Dummy</button><button class="btn-action btn-refresh" onclick="loadOrders()">🔄 Refresh</button><button class="btn-action btn-danger" onclick="clearOrders()">Hapus Semua</button></div></div><table><thead><tr><th>Waktu</th><th>Produk</th><th>Nama</th><th>Detail</th><th>Status</th><th>Aksi</th></tr></thead><tbody id="allOrdersTable"></tbody></table></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="adminOrderModal" class="modal-overlay"><div class="modal-content" style="max-width: 500px;"><span class="close-modal" onclick="closeAdminModal()">×</span><h2>DETAIL PESANAN</h2><div id="adminOrderDetail"></div></div></div>
+
+    <script>
+        const products = [];
+        
+        // === FOTO JERSEY VOLI CUSTOM DIMASUKKAN DI URUTAN ATAS ===
+        products.push({ code: 'JSE-V01', name: 'Jersey Voli BSVC Yellow', price: 125000, img: 'https://z-cdn-media.chatglm.cn/files/14e95906-a842-4a4b-8f80-3328b80e5b89.png?auth_key=1884223298-515e30a868124b6a879a25991f9ea02b-0-a8e29ac901f0c712c312c87d3b6044f4' });
+        products.push({ code: 'JSE-V02', name: 'Jersey Voli Red Black', price: 125000, img: 'https://z-cdn-media.chatglm.cn/files/d141e969-69c8-4ca7-8224-e8c2beef9d2b.png?auth_key=1884223298-ba122252d12c46e091ee2cfc1069501a-0-235ee72a2d9dc978fb290ab8f877592d' });
+        products.push({ code: 'JSE-V03', name: 'Jersey Voli Gold Dark', price: 135000, img: 'https://z-cdn-media.chatglm.cn/files/5a80eab7-69bc-4227-a6c1-493e325b5814.png?auth_key=1884223298-fd710825a8db47a889dd3b7e123a074a-0-c6617eab665f82b64b2b1c09f330b0e4' });
+        products.push({ code: 'JSE-V04', name: 'Jersey Voli Full Print', price: 125000, img: 'https://z-cdn-media.chatglm.cn/files/6f27e8de-d1b6-4f9f-9ae1-d3415cba1df3.png?auth_key=1884223298-080c499f92364f5fb3c8632abc7f8729-0-32b69187d170704fa8103b657ebc6e4f' });
+
+        const categories = ['Futsal', 'Bola', 'Sepeda', 'Mancing', 'Voli', 'Badminton', 'Esport', 'Komunitas'];
+        for(let i=1; i<=32; i++) {
+            const cat = categories[i % categories.length];
+            products.push({ code: `JSE-${String(i).padStart(3, '0')}`, name: `Jersey ${cat} ${i}`, price: 90000 + (Math.floor(Math.random() * 5) * 10000), img: `https://picsum.photos/seed/jersey${i}/400/500` });
+        }
+
+        const grid = document.getElementById('productGrid');
+        products.forEach(p => {
+            const encodedImg = encodeURIComponent(p.img);
+            grid.innerHTML += `
+                <div class="product-card" onclick="openOrderModal('${p.code}', '${p.name}', ${p.price}, '${encodedImg}')">
+                    <div class="stock-badge">Ready</div>
+                    <img src="${p.img}" alt="${p.name}" class="product-img" loading="lazy">
+                    <div class="product-info">
+                        <div class="product-cat">${p.name}</div>
+                        <div class="product-code">Kode: ${p.code}</div>
+                        <div class="product-price">Rp ${p.price.toLocaleString('id-ID')}</div>
+                        <button class="order-btn" onclick="event.stopPropagation(); openOrderModal('${p.code}', '${p.name}', ${p.price}, '${encodedImg}');">Pesan</button>
+                    </div>
+                </div>
+            `;
+        });
+
+        function showPromo(type) {
+            const title = document.getElementById('promoTitle'); const body = document.getElementById('promoBody'); const waLink = document.getElementById('promoWaLink');
+            let waText = "Halo%20Admin,%20saya%20tertarik%20dengan%20promo%20 ";
+            if(type === 'tim') { title.innerText = "🔥 PROMO TIM"; body.innerHTML = "Dapatkan <strong>Diskon 10%</strong> khusus untuk pemesanan minimal 11 pcs.<br><br>Cocok untuk turnamen, komunitas, atau acara sekolah. Jangan lewatkan kesempatan ini!"; waText += "Tim (Diskon 10%)"; }
+            else if(type === 'bahan') { title.innerText = "👕 BAHAN BERKUALITAS"; body.innerHTML = "Kami hanya menggunakan <strong>Material Premium</strong> yang adem, menyerap keringat, dan sangat nyaman dipakai seharian.<br><br>Garansi bahan tidak luntur dan tidak melar!"; waText += "Bahan%20Berkualitas"; }
+            else if(type === 'express') { title.innerText = "⚡ EXPRESS SERVICE"; body.innerHTML = "Butuh jersey cepat? Kami menyediakan layanan <strong>Pengerjaan 2 Hari Jadi</strong>!<br><br>Syarat dan ketentuan berlaku. Pastikan Anda mengkonfirmasi ketersediaan layanan ini."; waText += "Express%20Service%20(2%20Hari%20Jadi)"; }
+            waLink.href = `https://wa.me/6281212514747?text=${waText}`; document.getElementById('promoModal').style.display = 'flex';
+        }
+        function closePromo() { document.getElementById('promoModal').style.display = 'none'; }
+
+        let currentProduct = {};
+        function openOrderModal(code, name, price, encodedImg) { 
+            currentProduct = { code, name, price, img: decodeURIComponent(encodedImg) }; 
+            document.getElementById('modalProductName').value = name; 
+            document.getElementById('orderModal').style.display = 'flex'; 
+            document.getElementById('custName').value = ''; 
+            document.getElementById('custPhone').value = ''; 
+            document.getElementById('custQty').value = '1'; 
+        }
+        function closeOrderModal() { document.getElementById('orderModal').style.display = 'none'; }
+
+        let hasLocalStorage = true;
+        try {
+            const testKey = '__test__';
+            window.localStorage.setItem(testKey, '1');
+            window.localStorage.removeItem(testKey);
+        } catch (e) {
+            hasLocalStorage = false;
+        }
+
+        let inMemoryOrders = [];
+
+        function getOrders() {
+            if (hasLocalStorage) {
+                try { 
+                    const stored = localStorage.getItem('orders');
+                    if (stored) {
+                        const parsed = JSON.parse(stored);
+                        if (Array.isArray(parsed)) {
+                            inMemoryOrders = parsed;
+                        }
+                    }
+                } catch(e) { console.warn("Read error", e); }
+            }
+            return Array.isArray(inMemoryOrders) ? inMemoryOrders : [];
+        }
+
+        function saveOrders(orders) {
+            inMemoryOrders = Array.isArray(orders) ? orders : [];
+            if (hasLocalStorage) {
+                try { 
+                    localStorage.setItem('orders', JSON.stringify(inMemoryOrders)); 
+                } catch(e) { console.warn("Save error", e); }
+            }
+        }
+
+        function submitOrder() {
+            const custName = document.getElementById('custName').value.trim(); 
+            const custPhone = document.getElementById('custPhone').value.trim(); 
+            const size = document.getElementById('custSize').value; 
+            const qty = document.getElementById('custQty').value || 1; 
+            const targetAdmin = document.getElementById('custAdmin').value;
+            const btn = document.getElementById('waSubmitBtn');
+            
+            if(!custName || !custPhone) { showToast("Mohon lengkapi Nama dan No WhatsApp!", "#E10600"); return; }
+            const message = `*PESANAN BARU - KONVEKSI JERSEY ECO SPORT*\n\n*Kode:* ${currentProduct.code}\n*Nama:* ${currentProduct.name}\n*Harga:* Rp ${currentProduct.price.toLocaleString('id-ID')}\n*Gambar:* ${currentProduct.img}\n---------------------\n*Nama:* ${custName}\n*WA:* ${custPhone}\n*Ukuran:* ${size}\n*Qty:* ${qty} pcs\n\nMohon konfirmasi total. Terima kasih.`;
+            const waUrl = `https://wa.me/${targetAdmin}?text=${encodeURIComponent(message)}`;
+            
+            const orderData = { id: Date.now(), code: currentProduct.code, product: currentProduct.name, price: currentProduct.price, img: currentProduct.img, customer: custName, phone: custPhone, size: size, qty: qty, status: "Baru", date: new Date().toLocaleString('id-ID') };
+            
+            let orders = getOrders();
+            orders.push(orderData); 
+            saveOrders(orders);
+            
+            btn.innerText = "Membuka WhatsApp..."; btn.style.background = "#128C7E"; btn.disabled = true;
+            const win = window.open(waUrl, '_blank');
+            if (win) { setTimeout(() => { btn.innerText = "Kirim Pesanan via WhatsApp"; btn.style.background = "#25D366"; btn.disabled = false; closeOrderModal(); }, 500); } else { window.location.href = waUrl; }
+        }
+
+        const ADMIN_PASSWORD = "admin123"; 
+        function checkAdminPass() { if(document.getElementById('adminPassInput').value === ADMIN_PASSWORD) { document.getElementById('admin-login').style.display = 'none'; document.getElementById('admin-content').style.display = 'block'; loadOrders(); showToast("Login Berhasil!", "#27ae60"); } else { showToast("Sandi Salah!", "#E10600"); } }
+        function switchView(view) { if(view === 'admin') { document.getElementById('view-catalog').style.display = 'none'; document.getElementById('view-admin').style.display = 'block'; document.getElementById('admin-access-btn').style.display = 'none'; document.getElementById('admin-login').style.display = 'flex'; document.getElementById('admin-content').style.display = 'none'; } else { document.getElementById('view-catalog').style.display = 'block'; document.getElementById('view-admin').style.display = 'none'; document.getElementById('admin-access-btn').style.display = 'block'; } }
+        function switchTab(tab, elem) { document.querySelectorAll('[id^="admin-"]').forEach(el => { if(el.id !== 'admin-login' && el.id !== 'admin-content' && el.id !== 'adminOrderModal') el.style.display = 'none'; }); document.getElementById('admin-' + tab).style.display = 'block'; document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active')); if(elem) elem.classList.add('active'); loadOrders(); }
+        
+        function addDummyData() { 
+            let orders = getOrders();
+            orders.push({ id: Date.now(), code: "DUMMY-001", product: "Jersey Test", price: 95000, img: "https://picsum.photos/seed/dummy/400/500", customer: "Budi", phone: "08123456789", size: "L", qty: 2, status: "Baru", date: new Date().toLocaleString('id-ID') }); 
+            saveOrders(orders); 
+            showToast("Data contoh ditambahkan!", "#f39c12"); 
+            loadOrders(); 
+        }
+        
+        function clearAllStorage() {
+            if(confirm("PERINGATAN: Ini akan menghapus SEMUA data pesanan di browser ini. Lanjutkan?")) {
+                inMemoryOrders = []; 
+                if (hasLocalStorage) { try { localStorage.removeItem('orders'); } catch(e) {} }
+                loadOrders();
+                showToast("Semua data berhasil dibersihkan!", "#27ae60");
+            }
+        }
+
+        function loadOrders() {
+            let orders = getOrders(); 
+            
+            let recentTable = document.getElementById('recentOrdersTable'); 
+            let allTable = document.getElementById('allOrdersTable'); 
+            if(!recentTable || !allTable) return; 
+            
+            recentTable.innerHTML = ''; allTable.innerHTML = ''; 
+            let totalPcs = 0, newStatus = 0, revenue = 0;
+            
+            const searchTerm = document.getElementById('searchOrder') ? document.getElementById('searchOrder').value.toLowerCase() : ''; 
+            const filterStatus = document.getElementById('filterStatus') ? document.getElementById('filterStatus').value : 'all';
+            
+            let filteredOrders = orders.filter(o => { 
+                const matchSearch = o.customer.toLowerCase().includes(searchTerm) || o.product.toLowerCase().includes(searchTerm); 
+                const matchStatus = filterStatus === 'all' || o.status === filterStatus; 
+                return matchSearch && matchStatus; 
+            });
+            
+            if(orders.length === 0) { 
+                recentTable.innerHTML = '<tr><td colspan="6" class="empty-state">Belum ada pesanan.</td></tr>'; 
+                allTable.innerHTML = '<tr><td colspan="6" class="empty-state">Belum ada pesanan.</td></tr>'; 
+            } else {
+                orders.sort((a,b) => b.id - a.id); 
+                orders.forEach((order) => { totalPcs += parseInt(order.qty) || 0; if(order.status === "Baru") newStatus++; revenue += (order.price || 0) * parseInt(order.qty || 0); });
+                orders.slice(0, 5).forEach((order) => { recentTable.innerHTML += `<tr><td>#${order.id.toString().slice(-4)}</td><td>${order.product}</td><td>${order.customer}</td><td>${order.size}</td><td>${order.qty}</td><td><span class="badge ${order.status === 'Baru' ? 'badge-new' : 'badge-done'}">${order.status}</span></td></tr>`; });
+                if(filteredOrders.length === 0) { allTable.innerHTML = '<tr><td colspan="6" class="empty-state">Pesanan tidak ditemukan.</td></tr>'; } else { filteredOrders.forEach((order) => { allTable.innerHTML += `<tr><td>${order.date}<br><a href="https://wa.me/${order.phone.replace(/[^0-9]/g, '')}" target="_blank" style="color:var(--biru);font-size:12px;">${order.phone}</a></td><td><img src="${order.img}" style="width:50px;height:50px;object-fit:cover;border-radius:4px;"><br>${order.product}</td><td>${order.customer}</td><td>Ukuran: ${order.size}<br>Qty: ${order.qty}<br>Total: Rp ${(order.price * order.qty).toLocaleString('id-ID')}</td><td><span class="badge ${order.status === 'Baru' ? 'badge-new' : 'badge-done'}">${order.status}</span></td><td><button class="btn-action btn-view" onclick="viewOrderDetail(${order.id})">👁️ Lihat</button><button class="btn-action" onclick="updateStatus(${order.id})">Ubah Status</button><button class="btn-action btn-pdf" onclick="downloadPDF(${order.id})">PDF</button></td></tr>`; }); }
+            }
+            document.getElementById('totalOrders').innerText = orders.length; 
+            document.getElementById('newOrders').innerText = newStatus; 
+            document.getElementById('totalPcs').innerText = totalPcs; 
+            document.getElementById('totalRevenue').innerText = "Rp " + revenue.toLocaleString('id-ID');
+        }
+
+        function viewOrderDetail(id) { 
+            let orders = getOrders(); 
+            let order = orders.find(o => o.id === id); 
+            if(!order) return; 
+            document.getElementById('adminOrderDetail').innerHTML = `<img src="${order.img}" class="detail-img"><div class="detail-row"><span>Kode</span><strong>${order.code}</strong></div><div class="detail-row"><span>Produk</span><strong>${order.product}</strong></div><div class="detail-row"><span>Nama</span><strong>${order.customer}</strong></div><div class="detail-row"><span>WA</span><strong><a href="https://wa.me/${order.phone.replace(/[^0-9]/g, '')}" target="_blank" style="color:var(--biru)">${order.phone}</a></strong></div><div class="detail-row"><span>Ukuran/Qty</span><strong>${order.size} / ${order.qty} Pcs</strong></div><div class="detail-row"><span>Total</span><strong style="color:var(--merah)">Rp ${(order.price * order.qty).toLocaleString('id-ID')}</strong></div><button class="btn-action btn-pdf" style="width:100%;margin-top:15px;padding:12px;" onclick="downloadPDF(${order.id})">📄 Lihat & Download PDF</button>`; 
+            document.getElementById('adminOrderModal').style.display = 'flex'; 
+        }
+        function closeAdminModal() { document.getElementById('adminOrderModal').style.display = 'none'; }
+        function updateStatus(id) { 
+            let orders = getOrders(); 
+            let order = orders.find(o => o.id === id); 
+            if(order) { order.status = order.status === "Baru" ? "Selesai" : "Baru"; saveOrders(orders); showToast(`Status diperbarui menjadi: ${order.status}`, "#00F0FF"); loadOrders(); } 
+        }
+        
+        function clearOrders() { 
+            if(confirm("Hapus semua data pesanan? Aksi ini tidak dapat dibatalkan.")) { 
+                inMemoryOrders = []; 
+                if (hasLocalStorage) { try { localStorage.removeItem('orders'); } catch(e) {} }
+                loadOrders(); 
+                showToast("Semua data pesanan telah dihapus.", "#E10600"); 
+            } 
+        }
+
+        function exportCSV() { 
+            let orders = getOrders(); 
+            if(!orders || orders.length === 0) { showToast("Tidak ada data untuk di-export.", "#E10600"); return; } 
+            
+            let csv = "ID,Waktu,Produk,Harga Satuan,Nama,No WA,Ukuran,Qty,Total Harga,Status\r\n"; 
+            orders.forEach(o => { 
+                csv += `${o.id},"${o.date}","${o.product}",${o.price || 0},"${o.customer}","${o.phone}","${o.size}",${o.qty || 0},${(o.price || 0)*(o.qty || 0)},"${o.status}"\r\n`; 
+            }); 
+            
+            let filename = 'Pesanan_KonveksiJerseyEcoSport.csv';
+            let blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            
+            if (navigator.msSaveBlob) { 
+                navigator.msSaveBlob(blob, filename);
+            } else {
+                let link = document.createElement("a");
+                if (link.download !== undefined) {
+                    let url = URL.createObjectURL(blob);
+                    link.setAttribute("href", url);
+                    link.setAttribute("download", filename);
+                    link.style.visibility = 'hidden';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    URL.revokeObjectURL(url);
+                }
+            }
+            showToast("Data berhasil di-export ke CSV!", "#8e44ad"); 
+        }
+
+        function showToast(message, color) { const toast = document.createElement('div'); toast.className = 'toast-notification'; toast.innerText = message; toast.style.background = color || '#333'; document.body.appendChild(toast); setTimeout(() => { toast.classList.add('show'); }, 10); setTimeout(() => { toast.classList.remove('show'); setTimeout(() => { document.body.removeChild(toast); }, 500); }, 3000); }
+
+        function downloadPDF(id) {
+            let orders = getOrders(); 
+            let order = orders.find(o => o.id === id); 
+            if(!order) return;
+            
+            closeAdminModal();
+            showToast("PDF dibuka di tab baru...", "#00F0FF");
+
+            try {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+
+                doc.setFillColor(225, 6, 0);
+                doc.rect(0, 0, 210, 40, 'F');
+                doc.setTextColor(255, 255, 255);
+                doc.setFontSize(22);
+                doc.setFont("helvetica", "bold");
+                doc.text("INVOICE PESANAN", 105, 20, { align: "center" });
+                doc.setFontSize(14);
+                doc.setFont("helvetica", "normal");
+                doc.text("KONVEKSI JERSEY ECO SPORT", 105, 30, { align: "center" });
+
+                doc.setTextColor(0, 0, 0);
+                doc.setFontSize(12);
+                let y = 60;
+                
+                doc.setFont("helvetica", "bold");
+                doc.text("Detail Produk:", 20, y);
+                doc.setFont("helvetica", "normal");
+                y += 7;
+                doc.text(`Kode Produk : ${order.code}`, 20, y); y += 7;
+                doc.text(`Nama Produk : ${order.product}`, 20, y); y += 7;
+                doc.text(`Tanggal Pesan : ${order.date}`, 20, y); y += 15;
+
+                doc.setFont("helvetica", "bold");
+                doc.text("Detail Pelanggan:", 20, y);
+                doc.setFont("helvetica", "normal");
+                y += 7;
+                doc.text(`Nama Pemesan : ${order.customer}`, 20, y); y += 7;
+                doc.text(`No WhatsApp  : ${order.phone}`, 20, y); y += 7;
+                doc.text(`Ukuran       : ${order.size}`, 20, y); y += 7;
+                doc.text(`Jumlah (Qty) : ${order.qty} Pcs`, 20, y); y += 15;
+
+                doc.setDrawColor(200, 200, 200);
+                doc.line(20, y, 190, y);
+                y += 15;
+
+                doc.setFontSize(16);
+                doc.setFont("helvetica", "bold");
+                doc.setTextColor(225, 6, 0);
+                doc.text(`TOTAL: Rp ${(order.price * order.qty).toLocaleString('id-ID')}`, 190, y, { align: "right" });
+
+                doc.setFontSize(10);
+                doc.setTextColor(150, 150, 150);
+                doc.setFont("helvetica", "normal");
+                doc.text("Terima kasih telah berbelanja di Konveksi Jersey Eco Sport.", 105, 280, { align: "center" });
+                doc.text("Bukti pesanan ini sah dan dapat dikonfirmasi via WhatsApp Admin.", 105, 285, { align: "center" });
+
+                const blobUrl = doc.output('bloburl');
+                window.open(blobUrl, '_blank');
+
+            } catch(err) {
+                console.error("Gagal membuat PDF:", err);
+                showToast("Gagal membuat PDF.", "#E10600");
+            }
+        }
+    </script>
+</body>
+</html>
