@@ -217,7 +217,7 @@ table{min-width:600px}
 <div class="fabric-card"><img src="https://picsum.photos/seed/kain-interlock/400/300" alt="Interlock" class="fabric-img"><div class="fabric-info"><h3>Premium Interlock</h3><p>Tekstur tebal dan halus, jatuh sempurna.</p></div></div>
 </div>
 
-<div class="section-title"><h2>KOLEKSI <span>JERSEY PILIHAN</span></h2><p>9 desain jersey voli premium siap pakai. Klik pesan langsung ke Admin!</p></div>
+<div class="section-title"><h2>KOLEKSI <span>JERSEY PILIHAN</span></h2><p>15 desain jersey premium siap pakai. Klik pesan langsung ke Admin!</p></div>
 <div class="product-grid" id="productGrid"></div>
 
 <div class="section-title"><h2>LOKASI <span>KAMI</span></h2><p>Kunjungi toko fisik kami untuk konsultasi desain.</p></div>
@@ -298,7 +298,13 @@ var products = [
   {code:"JSE-V06",name:"Jersey Voli BSVC Arkhan Yellow Blue",price:125000,img:"https://z-cdn-media.chatglm.cn/files/fe1731bb-809a-4e45-9dd9-c5b744b674a2.png?auth_key=1884249904-1a66533e81dc4c63b2eee0ddb3086073-0-ee7a191e792f85471cd32c0c7692ad48",specs:"Dryfit Premium / Fullprint / Yellow Blue"},
   {code:"JSE-V07",name:"Jersey Voli BSVC Arkhan Green",price:125000,img:"https://z-cdn-media.chatglm.cn/files/62639683-b536-4adc-8efc-0cb768bc03e6.png?auth_key=1884249904-bdd2916ebe014e179bc1f7581fa6be03-0-894d741d166d95e37615133ddc967df4",specs:"Dryfit Premium / Fullprint / Yellow Green"},
   {code:"JSE-V08",name:"Jersey Voli Boss Muda Petavol",price:125000,img:"https://z-cdn-media.chatglm.cn/files/729228b3-a99f-4b9d-8f01-096ea8af8520.png?auth_key=1884249904-23b5b9d4fa8c4896bda45f06fb06e60f-0-60bb40e182357316e3dd82915e4f75ae",specs:"Dryfit Premium / Fullprint / Black Blue"},
-  {code:"JSE-V09",name:"Jersey Voli Satria Jaya Umbul Sari",price:125000,img:"https://z-cdn-media.chatglm.cn/files/0beacbf5-df23-4fcb-aa3f-0745c9c5b387.png?auth_key=1884249904-dd9bee558d7e490da0672103c5df2361-0-c48c1f329e8f50b9e80438e7ab99710e",specs:"Dryfit Premium / Fullprint / Red Black"}
+  {code:"JSE-V09",name:"Jersey Voli Satria Jaya Umbul Sari",price:125000,img:"https://z-cdn-media.chatglm.cn/files/0beacbf5-df23-4fcb-aa3f-0745c9c5b387.png?auth_key=1884249904-dd9bee558d7e490da0672103c5df2361-0-c48c1f329e8f50b9e80438e7ab99710e",specs:"Dryfit Premium / Fullprint / Red Black"},
+  {code:"JSE-V10",name:"Jersey Voli Ecosport Red Black Tank",price:135000,img:"https://z-cdn-media.chatglm.cn/files/2b58896e-de82-4971-a297-efeb505df8b7.png?auth_key=1884251134-70a074f3469f4f85af0a8c0c6010d2e2-0-1b0273ef03b912a9554381f9b683b83b",specs:"Dryfit Premium / Fullprint / Red Black Tank Top"},
+  {code:"JSE-C01",name:"Jersey Cycling Ecosport Brown Dark",price:145000,img:"https://z-cdn-media.chatglm.cn/files/3257a236-6711-4bfd-ad48-ff15adca040a.png?auth_key=1884251134-338fee63c0274c7d85290bb22d06e921-0-241aba23954473dbd177f76cb4b28f94",specs:"Dryfit Premium / Fullprint / Brown Black Cycling"},
+  {code:"JSE-V11",name:"Jersey Voli Sidorejo Club 88",price:125000,img:"https://z-cdn-media.chatglm.cn/files/bdde2179-cff0-4500-b87c-2cf131475631.png?auth_key=1884251134-4986305bf23145e5ad01511cea62c9ab-0-d421e02a4286501121dd7631dc09f51e",specs:"Dryfit Premium / Fullprint / Blue White"},
+  {code:"JSE-V12",name:"Jersey Voli Yonif 893 Black White",price:125000,img:"https://z-cdn-media.chatglm.cn/files/62a0d174-912b-4524-9735-90e636c7d0a6.png?auth_key=1884251134-87642435d4184eada7b38be93ff97c03-0-520c107b80c2976204cee90e314ffaa3",specs:"Dryfit Premium / Fullprint / Black White Ethnic"},
+  {code:"JSE-V13",name:"Jersey Voli Eagle Red Black",price:135000,img:"https://z-cdn-media.chatglm.cn/files/292897ec-c4ca-4706-baf3-9c5d991b0c3e.png?auth_key=1884251134-89a744c04de44963962a1f141f44ee81-0-dac74f396acb974ae91b7f467bb035b0",specs:"Dryfit Premium / Fullprint / Red Black Eagle"},
+  {code:"JSE-V14",name:"Jersey Voli Blue Red Gold",price:125000,img:"https://z-cdn-media.chatglm.cn/files/60b5b7b1-4468-47fa-a6e2-29bbe4962fc7.png?auth_key=1884251134-3a55b40cd0154a66ae64ff96ab5a1e96-0-88ba425c219946fe1d17b91c74b8aee9",specs:"Dryfit Premium / Fullprint / Blue Red Gold"}
 ];
 
 var grid = document.getElementById("productGrid");
@@ -327,7 +333,7 @@ for(var i = 0; i < products.length; i++){
 function showPromo(type){
   var title=document.getElementById("promoTitle"),body=document.getElementById("promoBody"),waLink=document.getElementById("promoWaLink");
   var waText="Halo%20Admin,%20saya%20tertarik%20dengan%20promo%20";
-  if(type==="tim"){title.innerText="PROMO TIM";body.innerHTML="Dapatkan <strong>Diskon 10%</strong> khusus pemesanan minimal 11 pcs.<br><br>Cocok untuk turnamen, komunitas, atau acara sekolah!";waText+="Tim (Diskon 10%)";}
+  if(type==="tim"){title.innerText="PROMO TIM";body.innerHTML="Dapatkan <strong>Diskon 10%</strong> khusus pemesanan minimal 11 pcs.<br><br>Cocok untuk turnamen, komunitas, atau acara sekolah!";waText+="Tim (Diskon 10%)";;}
   else if(type==="bahan"){title.innerText="BAHAN BERKUALITAS";body.innerHTML="Kami hanya menggunakan <strong>Material Premium</strong> yang adem, menyerap keringat, dan sangat nyaman.<br><br>Garansi bahan tidak luntur dan tidak melar!";waText+="Bahan%20Berkualitas";}
   else if(type==="express"){title.innerText="EXPRESS SERVICE";body.innerHTML="Butuh jersey cepat? Kami menyediakan layanan <strong>Pengerjaan 2 Hari Jadi</strong>!<br><br>Syarat dan ketentuan berlaku.";waText+="Express%20Service%20(2%20Hari%20Jadi)";}
   waLink.href="https://wa.me/6281212514747?text="+waText;
