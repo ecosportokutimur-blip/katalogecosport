@@ -12,7 +12,11 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Inter',sans-serif;background-color:var(--hitam);color:var(--putih);transition:background-color 0.4s ease, color 0.4s ease}
 h1,h2,h3{font-family:'Rajdhani',sans-serif;text-transform:uppercase}
-#view-catalog{min-height:100vh;background:radial-gradient(circle at 50% 0%,#1a1a1a 0%,var(--hitam) 60%);padding-bottom:60px;transition:background 0.4s ease}
+
+/* Optimasi Scroll & Render */
+#view-catalog{min-height:100vh;background:radial-gradient(circle at 50% 0%,#1a1a1a 0%,var(--hitam) 60%);padding-bottom:60px;transition:background 0.4s ease;-webkit-overflow-scrolling:touch;will-change:scroll-position}
+.product-card, .product-img {will-change:transform; backface-visibility:hidden; -webkit-backface-visibility:hidden;}
+
 .catalog-header{text-align:center;padding:120px 20px 50px;position:relative;overflow:hidden;border-bottom:2px solid var(--merah);transition:background 0.4s ease}
 .catalog-header::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(0,240,255,0.03) 10px,rgba(0,240,255,0.03) 20px);z-index:0}
 .catalog-header h1{font-family:'Audiowide',cursive;font-size:60px;position:relative;z-index:2;color:#fff;text-shadow:0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(225,6,0,.8),0 1px 3px rgba(225,6,0,.8),0 3px 5px rgba(225,6,0,.5),0 5px 10px rgba(225,6,0,.4),0 10px 10px rgba(225,6,0,.3),0 20px 20px rgba(225,6,0,.2);line-height:1.1;letter-spacing:2px;transition:color 0.4s, text-shadow 0.4s}
@@ -26,8 +30,9 @@ h1,h2,h3{font-family:'Rajdhani',sans-serif;text-transform:uppercase}
 @keyframes logoSpin{0%{transform:rotateY(0deg);filter:drop-shadow(0 10px 15px rgba(225,6,0,0.5))}50%{filter:drop-shadow(0 25px 25px rgba(0,240,255,0.4))}100%{transform:rotateY(360deg);filter:drop-shadow(0 10px 15px rgba(225,6,0,0.5))}}
 .top-info-bar{text-align:center;padding:12px 20px;background:#050505;border-bottom:1px solid #222;font-size:13px;color:#aaa;transition:background 0.4s, color 0.4s, border-color 0.4s}
 .top-info-bar p{margin:4px 0}
-.top-info-bar a{color:var(--biru);text-decoration:none;font-weight:600}
-.top-info-bar a:hover{color:var(--putih)}
+.top-info-bar a{color:var(--biru);text-decoration:none;font-weight:600;transition:0.3s}
+.top-info-bar a:hover{color:#25D366}
+.top-info-bar a i{margin-right:4px}
 .top-social-bar{text-align:center;padding:15px 20px;background:#111;border-bottom:1px solid #222;transition:background 0.4s, border-color 0.4s}
 .social-links{display:flex;justify-content:center;gap:15px;flex-wrap:wrap}
 .social-icon{text-decoration:none;color:#aaa;background:var(--hitam);border:1px solid #333;padding:10px 20px;border-radius:30px;font-family:'Rajdhani';font-weight:700;font-size:14px;display:inline-flex;align-items:center;gap:8px;transition:0.3s}
@@ -36,7 +41,8 @@ h1,h2,h3{font-family:'Rajdhani',sans-serif;text-transform:uppercase}
 .social-icon.ig:hover{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;box-shadow:0 5px 15px rgba(225,48,108,0.3)}
 .social-icon.tt:hover{background:#010101;color:#fff;border:1px solid #69C9D0;box-shadow:0 5px 15px rgba(105,201,208,0.3)}
 .social-icon.web:hover{background:var(--merah);color:#fff;box-shadow:0 5px 15px rgba(225,6,0,0.3)}
-.promo-banner{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;padding:30px 5%;max-width:1400px;margin:0 auto}
+.social-icon.yt:hover{background:#FF0000;color:#fff;box-shadow:0 5px 15px rgba(255,0,0,0.3)}
+.fabric-card{cursor:pointer}.promo-banner{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;padding:30px 5%;max-width:1400px;margin:0 auto}
 .promo-card{flex:1;min-width:300px;background:linear-gradient(135deg,#1a1a1a,#0f0f0f);border-left:4px solid var(--merah);padding:25px;border-radius:8px;display:flex;align-items:center;gap:20px;transition:0.3s;cursor:pointer}
 .promo-card:hover{transform:translateY(-3px);box-shadow:0 5px 15px rgba(225,6,0,0.2);background:linear-gradient(135deg,#222,#111)}
 .promo-icon{font-size:40px}
@@ -49,8 +55,10 @@ h1,h2,h3{font-family:'Rajdhani',sans-serif;text-transform:uppercase}
 .section-title h2 span{color:var(--merah)}
 .section-title p{color:#666;margin-top:10px;font-size:14px;transition:color 0.4s}
 .section-title::after{content:'';display:block;width:60px;height:4px;background:var(--biru);margin:15px auto 0;border-radius:2px}
+
 .video-container{max-width:800px;margin:0 auto 60px;border:2px solid var(--merah);border-radius:10px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.5)}
-.video-container video{width:100%;display:block}
+.video-container iframe{width:100%;aspect-ratio:16/9;display:block;border:0;}
+
 .fabric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:0 5% 40px;max-width:1400px;margin:0 auto}
 .fabric-card{background:#141414;border:1px solid #222;border-radius:10px;overflow:hidden;transition:0.3s;text-align:center}
 .fabric-card:hover{border-color:var(--merah);transform:translateY(-5px);box-shadow:0 10px 30px rgba(225,6,0,0.15)}
@@ -77,8 +85,8 @@ h1,h2,h3{font-family:'Rajdhani',sans-serif;text-transform:uppercase}
 .closing-cta{text-align:center;padding:60px 20px;background:linear-gradient(45deg,#111,#050505);border-top:1px solid #222;border-bottom:1px solid #222;margin-top:40px;transition:background 0.4s, border-color 0.4s}
 .closing-cta h2{font-family:'Audiowide',cursive;font-size:28px;margin-bottom:15px}
 .closing-cta p{color:#aaa;max-width:500px;margin:0 auto 25px;transition:color 0.4s}
-.modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:9999;justify-content:center;align-items:flex-start;padding:20px 0;overflow-y:auto}
-.modal-content{background:#111;border:1px solid var(--biru);padding:30px;border-radius:10px;width:90%;max-width:400px;position:relative;margin:auto;max-height:90vh;overflow-y:auto;transition:background 0.4s, border-color 0.4s}
+.modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:9999;justify-content:center;align-items:flex-start;padding:20px 0;overflow-y:auto;-webkit-overflow-scrolling:touch;will-change:scroll-position}
+.modal-content{background:#111;border:1px solid var(--biru);padding:30px;border-radius:10px;width:90%;max-width:400px;position:relative;margin:auto;max-height:90vh;overflow-y:auto;-webkit-overflow-scrolling:touch;transition:background 0.4s, border-color 0.4s}
 .modal-content h2{color:var(--biru);margin-bottom:20px;text-align:center}
 .form-group{margin-bottom:15px}
 .form-group label{display:block;font-size:12px;color:#ccc;margin-bottom:5px;transition:color 0.4s}
@@ -164,72 +172,57 @@ td{padding:15px;text-align:left;border-bottom:1px solid var(--border-admin);font
 table{min-width:600px}
 }
 
-/* ================= TAMBAHAN FITUR DARK/LIGHT MODE ================= */
 #theme-toggle-btn{position:fixed;bottom:20px;right:20px;width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg, #1a1a1a, #333);color:#FFD700;border:2px solid #444;font-size:22px;cursor:pointer;z-index:1000;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(0,0,0,0.6);transition:0.3s}
 #theme-toggle-btn:hover{transform:scale(1.15) rotate(15deg);border-color:var(--biru)}
 
-/* Mode Terang (Light Mode) Variabel & Override */
 body.light-mode{--hitam:#F3F4F6;--putih:#111827;--abu:#E5E7EB;--bg-admin:#F9FAFB;--card-admin:#FFFFFF;--border-admin:#D1D5DB;--input-admin:#F3F4F6;--text-admin:#1F2937}
-
 body.light-mode #view-catalog{background:radial-gradient(circle at 50% 0%,#ffffff 0%,#F3F4F6 60%)}
 body.light-mode .catalog-header{background:#FFFFFF;border-bottom:2px solid var(--merah)}
 body.light-mode .catalog-header::before{background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(0,0,0,0.02) 10px,rgba(0,0,0,0.02) 20px)}
 body.light-mode .catalog-header h1,body.light-mode .catalog-header h1 span{color:#111;text-shadow:0 2px 4px rgba(0,0,0,0.1)}
 body.light-mode .hero-desc{color:#4B5563}
-
 body.light-mode .top-info-bar{background:#E5E7EB;color:#4B5563;border-bottom-color:#D1D5DB}
 body.light-mode .top-info-bar a{color:#0284C7}
-
 body.light-mode .top-social-bar{background:#F9FAFB;border-bottom-color:#D1D5DB}
 body.light-mode .social-icon{background:#FFFFFF;border-color:#D1D5DB;color:#374151}
-
 body.light-mode .promo-card{background:linear-gradient(135deg,#FFFFFF,#F9FAFB);box-shadow:0 2px 8px rgba(0,0,0,0.05)}
 body.light-mode .promo-card:hover{background:linear-gradient(135deg,#F9FAFB,#F3F4F6)}
 body.light-mode .promo-text p{color:#4B5563}
-
 body.light-mode .trust-badges{background:#F9FAFB;border-color:#D1D5DB}
 body.light-mode .trust-item{color:#374151}
-
 body.light-mode .section-title p{color:#6B7280}
-
 body.light-mode .fabric-card,body.light-mode .product-card{background:#FFFFFF;border-color:#E5E7EB;box-shadow:0 2px 6px rgba(0,0,0,0.05)}
 body.light-mode .fabric-card:hover,body.light-mode .product-card:hover{box-shadow:0 8px 20px rgba(0,0,0,0.08)}
 body.light-mode .fabric-info p{color:#6B7280}
 body.light-mode .product-code{color:#9CA3AF}
 body.light-mode .product-specs{color:#6B7280}
 body.light-mode .stock-badge{background:rgba(255,255,255,0.9);color:#0284C7;border-color:#0284C7}
-
 body.light-mode .size-table{background:#FFFFFF;border-color:#E5E7EB}
 body.light-mode .size-table th{background:#F3F4F6;color:#0284C7}
 body.light-mode .size-table td{border-bottom-color:#E5E7EB;color:#374151}
 body.light-mode .size-table tr:hover td{background:#F9FAFB}
-
 body.light-mode .video-container,body.light-mode .map-container{box-shadow:0 4px 12px rgba(0,0,0,0.1)}
-
 body.light-mode .closing-cta{background:linear-gradient(45deg,#F9FAFB,#E5E7EB);border-color:#D1D5DB}
 body.light-mode .closing-cta p{color:#4B5563}
-
 body.light-mode .modal-content{background:#FFFFFF;border-color:#E5E7EB}
 body.light-mode .form-group label{color:#374151}
 body.light-mode .form-group input,body.light-mode .form-group select,body.light-mode .form-group textarea{background:#F3F4F6;border-color:#D1D5DB;color:#111827}
-
+body.light-mode #productDetailModal .modal-content{background:#FFFFFF;border-color:#E5E7EB}
+body.light-mode #detailProductName{color:#111827}
+body.light-mode #detailProductSpecs{color:#4B5563}
+body.light-mode #detailProductImg{background:#F3F4F6;border-color:#E5E7EB}
 body.light-mode .sidebar{background:#FFFFFF;border-right-color:#E5E7EB;box-shadow:2px 0 5px rgba(0,0,0,0.05)}
 body.light-mode .menu-item{color:#4B5563}
 body.light-mode .menu-item:hover{background:#F3F4F6;color:#111827}
 body.light-mode .menu-item.active{background:#EFF6FF;color:#0284C7;border-left-color:var(--merah)}
-
 body.light-mode .stat-card{box-shadow:0 1px 3px rgba(0,0,0,0.1)}
 body.light-mode .stat-card p{color:#6B7280}
-
 body.light-mode th{background:#F3F4F6;color:#374151;border-bottom-color:#D1D5DB}
 body.light-mode td{border-bottom-color:#E5E7EB}
-
 body.light-mode .btn-action{background:#E5E7EB;border-color:#D1D5DB;color:#374151}
 body.light-mode .btn-action:hover{background:#D1D5DB}
-
 body.light-mode .badge-new{background:rgba(225,6,0,0.1);color:#dc2626;border-color:#dc2626}
 body.light-mode .badge-done{background:rgba(0,240,255,0.1);color:#0891b2;border-color:#0891b2}
-
 body.light-mode #admin-access-btn{background:#FFF;color:#111;border-color:#DDD;opacity:1}
 body.light-mode #theme-toggle-btn{background:linear-gradient(135deg, #FFF, #E5E7EB);color:#F59E0B;border-color:#D1D5DB;box-shadow:0 4px 10px rgba(0,0,0,0.1)}
 </style>
@@ -251,19 +244,19 @@ body.light-mode #theme-toggle-btn{background:linear-gradient(135deg, #FFF, #E5E7
 </header>
 
 <div class="top-info-bar">
-<p>Ruko Pak Eko, Jl. Raya Prabumulih, OKU Timur, Sumatera Selatan</p>
-<p>Admin 1: <a href="https://wa.me/6285768068165" target="_blank">0857-6806-8165</a> | Admin 2: <a href="https://wa.me/6282182626325" target="_blank">0821-8262-6325</a></p>
+<p>Jalan Bandar Jaya, RT.4/RW.2, Bandar Jaya, Kec. Martapura, Kab. Ogan Komering Ulu Timur, Sumatera Selatan 32367, Indonesia</p>
+<p>Admin 1: <a href="https://wa.me/6285768068165" target="_blank"><i class="fab fa-whatsapp"></i> 0857-6806-8165</a> | Admin 2: <a href="https://wa.me/6282182626325" target="_blank"><i class="fab fa-whatsapp"></i> 0821-8262-6325</a></p>
 </div>
 
 <div class="top-social-bar">
 <div class="social-links">
-<a href="https://www.facebook.com/konveksi.ecosport.oku.timur" target="_blank" class="social-icon fb">Facebook</a>
-<a href="https://www.instagram.com/konveksi_ecosport_okutimur/" target="_blank" class="social-icon ig">Instagram</a>
-<a href="https://www.tiktok.com/@konveksi.eco.sport" target="_blank" class="social-icon tt">TikTok</a>
-<a href="https://ecosportokutimur-blip.github.io/jersey-eco-sport/" target="_blank" class="social-icon web">Website</a>
+<a href="https://www.facebook.com/konveksi.ecosport.oku.timur" target="_blank" class="social-icon fb"><i class="fab fa-facebook-f"></i> Facebook</a>
+<a href="https://www.instagram.com/konveksi_ecosport_okutimur/" target="_blank" class="social-icon ig"><i class="fab fa-instagram"></i> Instagram</a>
+<a href="https://www.tiktok.com/@konveksi.eco.sport" target="_blank" class="social-icon tt"><i class="fab fa-tiktok"></i> TikTok</a>
+<a href="https://www.youtube.com/channel/UCXRvnxsrVK2tfl91FIsiguA" target="_blank" class="social-icon yt"><i class="fab fa-youtube"></i> YouTube</a>
+<a href="https://ecosportokutimur-blip.github.io/jersey-eco-sport/" target="_blank" class="social-icon web"><i class="fas fa-globe"></i> Website</a>
 </div>
 </div>
-
 <div class="promo-banner">
 <div class="promo-card" onclick="showPromo('tim')"><div class="promo-icon">&#x1F525;</div><div class="promo-text"><h3>PROMO TIM</h3><p>Diskon 10% khusus pemesanan minimal 11 pcs.</p></div></div>
 <div class="promo-card" onclick="showPromo('bahan')"><div class="promo-icon">&#x1F455;</div><div class="promo-text"><h3>BAHAN BERKUALITAS</h3><p>Material premium adem, menyerap keringat, nyaman dipakai.</p></div></div>
@@ -277,31 +270,97 @@ body.light-mode #theme-toggle-btn{background:linear-gradient(135deg, #FFF, #E5E7
 <div class="trust-item">&#x1F48E; Bahan Premium</div>
 </div>
 
-<div class="section-title"><h2>PROSES <span>PRODUKSI</span></h2><p>Lihat bagaimana kami membuat jersey premium Anda.</p></div>
-<div class="video-container"><video controls muted loop autoplay><source src="https://youtube.com/shorts/jACuu_Q_1Z0?si=7MA70lq5mtgW-5cl.mp4" type="video/mp4">Browser tidak mendukung video.</video></div>
+<div class="section-title"><h2>PROSES <span>PRODUKSI</span></h2><p>Lihat bagaimana kami membuat jersey premium Anda dari desain hingga jahitan.</p></div>
 
+<!-- VIDEO PRODUKSI DENGAN AUTOPLAY -->
+<!-- GANTI TULISAN "GANTI_DENGAN_ID_VIDEO_ANDA" DENGAN ID YOUTUBE ANDA CONTOH: C_v5gXkQkQI -->
+<div class="video-container">
+<iframe
+  width="100%"
+  height="500"
+  src="https://www.youtube.com/embed/LGX593Tyaxc"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen>
+</iframe>
+</iframe>
+</body>
+</html>
 <div class="section-title"><h2>PANDUAN <span>UKURAN</span></h2><p>Pastikan ukuran yang tepat untuk kenyamanan maksimal (dalam cm).</p></div>
 <div class="size-guide-section"><table class="size-table"><thead><tr><th>Ukuran</th><th>Lebar Dada</th><th>Panjang Badan</th><th>Panjang Lengan</th></tr></thead><tbody><tr><td>XS</td><td>46</td><td>64</td><td>18</td></tr><tr><td>S</td><td>48</td><td>67</td><td>19</td></tr><tr><td>M</td><td>50</td><td>70</td><td>20</td></tr><tr><td>L</td><td>52</td><td>73</td><td>21</td></tr><tr><td>XL</td><td>54</td><td>76</td><td>22</td></tr><tr><td>XXL</td><td>56</td><td>79</td><td>23</td></tr><tr><td>3XL</td><td>58</td><td>82</td><td>24</td></tr></tbody></table></div>
 
 <div class="section-title"><h2>ANEKA <span>KAIN PREMIUM</span></h2><p>Pilihan bahan terbaik untuk kenyamanan dan performa maksimal.</p></div>
 <div class="fabric-grid">
-<div class="fabric-card"><img src="https://picsum.photos/seed/kain-dryfit/400/300" alt="Dry-Fit" class="fabric-img"><div class="fabric-info"><h3>Dry-Fit Pro</h3><p>Bahan ringan, menyerap keringat cepat, sangat adem.</p></div></div>
-<div class="fabric-card"><img src="https://picsum.photos/seed/kain-mesh/400/300" alt="Mesh" class="fabric-img"><div class="fabric-info"><h3>Mesh Ventilation</h3><p>Sirkulasi udara maksimal dengan lubang mikro.</p></div></div>
-<div class="fabric-card"><img src="https://picsum.photos/seed/kain-lycra/400/300" alt="Lycra" class="fabric-img"><div class="fabric-info"><h3>Elastic Lycra</h3><p>Melarat sempurna mengikuti gerakan tubuh.</p></div></div>
-<div class="fabric-card"><img src="https://picsum.photos/seed/kain-interlock/400/300" alt="Interlock" class="fabric-img"><div class="fabric-info"><h3>Premium Interlock</h3><p>Tekstur tebal dan halus, jatuh sempurna.</p></div></div>
+<div class="fabric-card">
+  <img src="https://z-cdn-media.chatglm.cn/files/28468642-3f5d-49ea-ae8f-f0f0f89741ff.png?auth_key=1884298416-4e669925a5794a7493ac5b8e1e71b6c5-0-767236a5b712ae8c45341a0357aa6581" alt="Drifit Premium" class="fabric-img">
+  <div class="fabric-info">
+    <h3>Drifit Premium</h3>
+    <p>100% Polyester. Breathable, Quick Dry, Lightweight. Bahan utama jersey premium.</p>
+  </div>
+</div>
+<div class="fabric-card">
+  <img src="https://z-cdn-media.chatglm.cn/files/62b8270a-dd30-4b84-a654-fd103c208f53.png?auth_key=1884298416-b58bed81ec5c4fa68641bb6ecbd5f5ce-0-99d3a03d377ae734c5c57fa16b78c3c1" alt="Embos Premium" class="fabric-img">
+  <div class="fabric-info">
+    <h3>Embos Premium</h3>
+    <p>100% Polyester, 150-160cm, 140-150gsm. Lembut, Breathable, Quick Dry.</p>
+  </div>
+</div>
+<div class="fabric-card">
+  <img src="https://z-cdn-media.chatglm.cn/files/d6867954-c413-4744-97ff-223c020a800e.png?auth_key=1884298416-e238ee49bea34625840142701288ee11-0-e4bc603bf3e37f5873e8502434832492" alt="PE Premium" class="fabric-img">
+  <div class="fabric-info">
+    <h3>PE Premium</h3>
+    <p>100% Polyester, 150-160cm, 140-150gsm. Ringan, Adem, Elastic, Durable.</p>
+  </div>
+</div>
+<div class="fabric-card">
+  <img src="https://z-cdn-media.chatglm.cn/files/5a7f8d60-74a6-4a05-9f9e-085dd611438d.png?auth_key=1884298085-749cc5a5911341a38ef1d5eac1e326d3-0-1ff9d22f9fe934f0b0f4655de849d798" alt="Kain Serena Premium" class="fabric-img">
+  <div class="fabric-info">
+    <h3>Kain Serena Premium</h3>
+    <p>Halus · Mengkilap · Nyaman. 100% Polyester, lebar 150-160cm. Permukaan licin & berkilau.</p>
+  </div>
+</div>
 </div>
 
 <div class="section-title"><h2>KOLEKSI <span>JERSEY PILIHAN</span></h2><p>19 desain jersey premium siap pakai. Klik pesan langsung ke Admin!</p></div>
 <div class="product-grid" id="productGrid"></div>
 
 <div class="section-title"><h2>LOKASI <span>KAMI</span></h2><p>Kunjungi toko fisik kami untuk konsultasi desain.</p></div>
-<div class="map-container"><iframe src="https://maps.google.com/maps?q=KONVEKSI+JERSEY+ECO+SPORT+-4.2660535,104.452827&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe></div>
+<div class="map-container"><iframe src="https://maps.google.com/maps?q=Jalan+Bandar+Jaya,+RT.4%2FRW.2,+Bandar+Jaya,+Kec.+Martapura,+Kabupaten+Ogan+Komering+Ulu+Timur,+Sumatera+Selatan+32367,+Indonesia&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe></div>
 
 <div class="closing-cta">
 <h2>SIAP MEMBUAT JERSEY IMPIAN ANDA?</h2>
 <p>Tim kami siap membantu mewujudkan desain terbaik untuk komunitas Anda.</p>
 <a href="https://wa.me/6285768068165?text=Halo%20Admin" target="_blank" class="order-btn" style="max-width:300px;margin:0 auto;">Konsultasi Gratis</a>
 </div>
+</div>
+
+<!-- Modal Detail Kain -->
+<div id="fabricDetailModal" class="modal-overlay">
+  <div class="modal-content" style="max-width:500px;">
+    <span class="close-modal" onclick="closeFabricDetail()">&#x2715;</span>
+    <img id="detailFabricImg" src="" alt="Fabric Image" style="width:100%; max-height:50vh; object-fit:contain; border-radius:8px; margin-bottom:20px; background:#050505; border:1px solid #222;">
+    <div>
+      <h2 id="detailFabricName" style="color:var(--putih); text-align:left; margin-bottom:10px; font-size:24px; font-family:'Rajdhani';"></h2>
+      <p id="detailFabricDesc" style="color:#aaa; font-size:14px; line-height:1.5;"></p>
+    </div>
+  </div>
+</div>
+<!-- Modal Detail Produk -->
+<div id="productDetailModal" class="modal-overlay">
+  <div class="modal-content" style="max-width:500px;">
+    <span class="close-modal" onclick="closeProductDetail()">&#x2715;</span>
+    <img id="detailProductImg" src="" alt="Product Image" style="width:100%; max-height:60vh; object-fit:contain; border-radius:8px; margin-bottom:20px; background:#050505; border:1px solid #222;">
+    <div>
+      <h2 id="detailProductName" style="color:var(--putih); text-align:left; margin-bottom:5px; font-size:24px; font-family:'Rajdhani';"></h2>
+      <div id="detailProductCode" style="color:var(--biru); font-family:'Rajdhani'; font-weight:600; font-size:14px; margin-bottom:10px;"></div>
+      <p id="detailProductSpecs" style="color:#aaa; font-size:14px; line-height:1.5; margin-bottom:15px;"></p>
+      <div id="detailProductPrice" style="color:var(--merah); font-size:28px; font-weight:700; font-family:'Rajdhani'; margin-bottom:20px;"></div>
+      <button class="order-btn" id="detailOrderBtn" style="font-size:16px; padding:14px; display:flex; align-items:center; justify-content:center; gap:8px;">
+        <i class="fab fa-whatsapp" style="font-size:20px;"></i> Pesan Sekarang
+      </button>
+    </div>
+  </div>
 </div>
 
 <div id="promoModal" class="modal-overlay"><div class="modal-content"><span class="close-modal" onclick="closePromo()">&#x2715;</span><h2 id="promoTitle"></h2><div id="promoBody" style="text-align:center;color:#ccc;line-height:1.6;margin-bottom:20px;"></div><a id="promoWaLink" href="#" target="_blank" class="submit-btn">Klaim Promo via WhatsApp</a></div></div>
@@ -364,48 +423,88 @@ body.light-mode #theme-toggle-btn{background:linear-gradient(135deg, #FFF, #E5E7
 
 <script>
 var products = [
-  {code:"JSE-K01",name:"Jersey Kemerdekaan 81 Dark",price:135000,img:"https://z-cdn-media.chatglm.cn/files/091f81a7-2235-49d8-b33c-f04469039bf6.jpg?auth_key=1884280415-fb78fdb184d74321b3774e77ec945d3c-0-a89e6a854bb42ca32c98cbe8ccee761b",specs:"Dryfit Premium / Fullprint / Dark 81 Indonesia"},
-  {code:"JSE-K02",name:"Jersey Kemerdekaan 81 Wine",price:135000,img:"https://z-cdn-media.chatglm.cn/files/5e7cfcfe-c23a-4704-b86e-66ebce00d5da.jpg?auth_key=1884280415-bad95e4b2f664b18b1fe026df1886295-0-b19921eca89ffbfe3ab1a538b6aff684",specs:"Dryfit Premium / Fullprint / Wine Red 81 Indonesia"},
-  {code:"JSE-K03",name:"Jersey Kemerdekaan 81 Garuda",price:135000,img:"https://z-cdn-media.chatglm.cn/files/93cab1c4-694f-44c0-a7a0-86e19f9cc66b.jpg?auth_key=1884280415-1b2b737a6fd845ffaa2c57c93162ffe1-0-18d433beb47f5267524de2c842738085",specs:"Dryfit Premium / Fullprint / Red White Garuda 81"},
-  {code:"JSE-K04",name:"Jersey Voli Kemerdekaan 81 Singa",price:135000,img:"https://z-cdn-media.chatglm.cn/files/76a848e2-b786-44c4-b3a7-ce9fb0aec124.jpg?auth_key=1884280415-d09d70baec5a42eabbc2610c6f1e80e9-0-8fa6e32e3cc2b7161f893520d3fca6bd",specs:"Dryfit Premium / Fullprint / Red White Lion Voli"},
-  {code:"JSE-V01",name:"Jersey Voli Ngawi Asri Wine",price:135000,img:"https://z-cdn-media.chatglm.cn/files/37429c3c-7951-4a25-a925-029e0f8513c7.png?auth_key=1884248609-27af5ed1580e4cd1b0d77e42d47cc018-0-b3ae2fcdfe5c8907c0f878e6f5d676fe",specs:"Dryfit Premium / Fullprint / Wine Red"},
-  {code:"JSE-V02",name:"Jersey Voli Ecosport Orange Dark",price:125000,img:"https://z-cdn-media.chatglm.cn/files/32b1adc4-aadb-4bd2-aad6-4f5b3f31bc9c.png?auth_key=1884248609-30f1a5543d994062a232f2e1d3c14083-0-6cdaa508288abff6e1a3f90f62e53694",specs:"Dryfit Premium / Fullprint / Dark Orange"},
-  {code:"JSE-V03",name:"Jersey Voli BSVC Bandar Sari",price:125000,img:"https://z-cdn-media.chatglm.cn/files/1ec28039-99cd-49f4-bac2-e1945e047282.png?auth_key=1884248609-ddd406bc2c2f4e69932cf9633a314bb7-0-f3cdfff18d7bb1df8a03f1cc97bb2c14",specs:"Dryfit Premium / Fullprint / Yellow Green"},
-  {code:"JSE-V04",name:"Jersey Voli Sadewa 26 Red Black",price:125000,img:"https://z-cdn-media.chatglm.cn/files/afa99d7c-8acc-43f7-8484-70f6ced6eefd.png?auth_key=1884248609-070758efbb42467f80b2f8f02d23c834-0-8623f00b510a55628adb652d61052f11",specs:"Dryfit Premium / Fullprint / Red Black"},
-  {code:"JSE-V05",name:"Jersey Voli Okus Blue",price:125000,img:"https://z-cdn-media.chatglm.cn/files/c5e9b0c7-013e-476c-84c8-1842cb79ce5a.png?auth_key=1884248609-3104c83f61584381947013c2ccd0c247-0-c7e1458216fdde52b282dd1ea43c7ad2",specs:"Dryfit Premium / Fullprint / Blue White"},
-  {code:"JSE-V06",name:"Jersey Voli BSVC Arkhan Yellow Blue",price:125000,img:"https://z-cdn-media.chatglm.cn/files/fe1731bb-809a-4e45-9dd9-c5b744b674a2.png?auth_key=1884249904-1a66533e81dc4c63b2eee0ddb3086073-0-ee7a191e792f85471cd32c0c7692ad48",specs:"Dryfit Premium / Fullprint / Yellow Blue"},
-  {code:"JSE-V08",name:"Jersey Voli Boss Muda Petavol",price:125000,img:"https://z-cdn-media.chatglm.cn/files/729228b3-a99f-4b9d-8f01-096ea8af8520.png?auth_key=1884249904-23b5b9d4fa8c4896bda45f06fb06e60f-0-60bb40e182357316e3dd82915e4f75ae",specs:"Dryfit Premium / Fullprint / Black Blue"},
-  {code:"JSE-V09",name:"Jersey Voli Satria Jaya Umbul Sari",price:125000,img:"https://z-cdn-media.chatglm.cn/files/0beacbf5-df23-4fcb-aa3f-0745c9c5b387.png?auth_key=1884249904-dd9bee558d7e490da0672103c5df2361-0-c48c1f329e8f50b9e80438e7ab99710e",specs:"Dryfit Premium / Fullprint / Red Black"},
-  {code:"JSE-V10",name:"Jersey Voli Ecosport Red Black Tank",price:135000,img:"https://z-cdn-media.chatglm.cn/files/2b58896e-de82-4971-a297-efeb505df8b7.png?auth_key=1884251134-70a074f3469f4f85af0a8c0c6010d2e2-0-1b0273ef03b912a9554381f9b683b83b",specs:"Dryfit Premium / Fullprint / Red Black Tank Top"},
-  {code:"JSE-C01",name:"Jersey Cycling Ecosport Brown Dark",price:145000,img:"https://z-cdn-media.chatglm.cn/files/3257a236-6711-4bfd-ad48-ff15adca040a.png?auth_key=1884251134-338fee63c0274c7d85290bb22d06e921-0-241aba23954473dbd177f76cb4b28f94",specs:"Dryfit Premium / Fullprint / Brown Black Cycling"},
-  {code:"JSE-V11",name:"Jersey Voli Sidorejo Club 88",price:125000,img:"https://z-cdn-media.chatglm.cn/files/bdde2179-cff0-4500-b87c-2cf131475631.png?auth_key=1884251134-4986305bf23145e5ad01511cea62c9ab-0-d421e02a4286501121dd7631dc09f51e",specs:"Dryfit Premium / Fullprint / Blue White"},
-  {code:"JSE-V12",name:"Jersey Voli Yonif 893 Black White",price:125000,img:"https://z-cdn-media.chatglm.cn/files/62a0d174-912b-4524-9735-90e636c7d0a6.png?auth_key=1884251134-87642435d4184eada7b38be93ff97c03-0-520c107b80c2976204cee90e314ffaa3",specs:"Dryfit Premium / Fullprint / Black White Ethnic"},
-  {code:"JSE-V13",name:"Jersey Voli Eagle Red Black",price:135000,img:"https://z-cdn-media.chatglm.cn/files/292897ec-c4ca-4706-baf3-9c5d991b0c3e.png?auth_key=1884251134-89a744c04de44963962a1f141f44ee81-0-dac74f396acb974ae91b7f467bb035b0",specs:"Dryfit Premium / Fullprint / Red Black Eagle"},
-  {code:"JSE-V14",name:"Jersey Voli Blue Red Gold",price:125000,img:"https://z-cdn-media.chatglm.cn/files/60b5b7b1-4468-47fa-a6e2-29bbe4962fc7.png?auth_key=1884251134-3a55b40cd0154a66ae64ff96ab5a1e96-0-88ba425c219946fe1d17b91c74b8aee9",specs:"Dryfit Premium / Fullprint / Blue Red Gold"},
-  {code:"JSE-V15",name:"Jersey D2SN Dark Blue",price:125000,img:"https://z-cdn-media.chatglm.cn/files/358d9aa5-0fe0-45d0-8841-7a16259712b6.png?auth_key=1884261636-6feaf13a54cf4eada9e017b194251311-0-86a7e32124a39d4ccdffae08a1a28bb3",specs:"Dryfit Premium / Fullprint / Dark Blue Modern"}
+  {code:"JSE-K01",name:"Jersey Kemerdekaan 81 Dark",price:85000,img:"https://z-cdn-media.chatglm.cn/files/091f81a7-2235-49d8-b33c-f04469039bf6.jpg?auth_key=1884280415-fb78fdb184d74321b3774e77ec945d3c-0-a89e6a854bb42ca32c98cbe8ccee761b",specs:"Dryfit Premium / Fullprint / Dark 81 Indonesia"},
+  {code:"JSE-K02",name:"Jersey Kemerdekaan 81 Wine",price:85000,img:"https://z-cdn-media.chatglm.cn/files/5e7cfcfe-c23a-4704-b86e-66ebce00d5da.jpg?auth_key=1884280415-bad95e4b2f664b18b1fe026df1886295-0-b19921eca89ffbfe3ab1a538b6aff684",specs:"Dryfit Premium / Fullprint / Wine Red 81 Indonesia"},
+  {code:"JSE-K03",name:"Jersey Kemerdekaan 81 Garuda",price:85000,img:"https://z-cdn-media.chatglm.cn/files/93cab1c4-694f-44c0-a7a0-86e19f9cc66b.jpg?auth_key=1884280415-1b2b737a6fd845ffaa2c57c93162ffe1-0-18d433beb47f5267524de2c842738085",specs:"Dryfit Premium / Fullprint / Red White Garuda 81"},
+  {code:"JSE-K04",name:"Jersey Voli Kemerdekaan 81 Singa",price:90000,img:"https://z-cdn-media.chatglm.cn/files/76a848e2-b786-44c4-b3a7-ce9fb0aec124.jpg?auth_key=1884280415-d09d70baec5a42eabbc2610c6f1e80e9-0-8fa6e32e3cc2b7161f893520d3fca6bd",specs:"Dryfit Premium / Fullprint / Red White Lion Voli"},
+  {code:"JSE-V01",name:"Jersey Voli Ngawi Asri Wine",price:85000,img:"https://z-cdn-media.chatglm.cn/files/37429c3c-7951-4a25-a925-029e0f8513c7.png?auth_key=1884248609-27af5ed1580e4cd1b0d77e42d47cc018-0-b3ae2fcdfe5c8907c0f878e6f5d676fe",specs:"Dryfit Premium / Fullprint / Wine Red"},
+  {code:"JSE-V02",name:"Jersey Voli Ecosport Orange Dark",price:85000,img:"https://z-cdn-media.chatglm.cn/files/32b1adc4-aadb-4bd2-aad6-4f5b3f31bc9c.png?auth_key=1884248609-30f1a5543d994062a232f2e1d3c14083-0-6cdaa508288abff6e1a3f90f62e53694",specs:"Dryfit Premium / Fullprint / Dark Orange"},
+  {code:"JSE-V03",name:"Jersey Voli BSVC Bandar Sari",price:85000,img:"https://z-cdn-media.chatglm.cn/files/1ec28039-99cd-49f4-bac2-e1945e047282.png?auth_key=1884248609-ddd406bc2c2f4e69932cf9633a314bb7-0-f3cdfff18d7bb1df8a03f1cc97bb2c14",specs:"Dryfit Premium / Fullprint / Yellow Green"},
+  {code:"JSE-V04",name:"Jersey Voli Sadewa 26 Red Black",price:85000,img:"https://z-cdn-media.chatglm.cn/files/afa99d7c-8acc-43f7-8484-70f6ced6eefd.png?auth_key=1884248609-070758efbb42467f80b2f8f02d23c834-0-8623f00b510a55628adb652d61052f11",specs:"Dryfit Premium / Fullprint / Red Black"},
+  {code:"JSE-V05",name:"Jersey Voli Okus Blue",price:85000,img:"https://z-cdn-media.chatglm.cn/files/c5e9b0c7-013e-476c-84c8-1842cb79ce5a.png?auth_key=1884248609-3104c83f61584381947013c2ccd0c247-0-c7e1458216fdde52b282dd1ea43c7ad2",specs:"Dryfit Premium / Fullprint / Blue White"},
+  {code:"JSE-V06",name:"Jersey Voli BSVC Arkhan Yellow Blue",price:85000,img:"https://z-cdn-media.chatglm.cn/files/fe1731bb-809a-4e45-9dd9-c5b744b674a2.png?auth_key=1884249904-1a66533e81dc4c63b2eee0ddb3086073-0-ee7a191e792f85471cd32c0c7692ad48",specs:"Dryfit Premium / Fullprint / Yellow Blue"},
+  {code:"JSE-V08",name:"Jersey Voli Boss Muda Petavol",price:85000,img:"https://z-cdn-media.chatglm.cn/files/729228b3-a99f-4b9d-8f01-096ea8af8520.png?auth_key=1884249904-23b5b9d4fa8c4896bda45f06fb06e60f-0-60bb40e182357316e3dd82915e4f75ae",specs:"Dryfit Premium / Fullprint / Black Blue"},
+  {code:"JSE-V09",name:"Jersey Voli Satria Jaya Umbul Sari",price:85000,img:"https://z-cdn-media.chatglm.cn/files/0beacbf5-df23-4fcb-aa3f-0745c9c5b387.png?auth_key=1884249904-dd9bee558d7e490da0672103c5df2361-0-c48c1f329e8f50b9e80438e7ab99710e",specs:"Dryfit Premium / Fullprint / Red Black"},
+  {code:"JSE-V10",name:"Jersey Voli Ecosport Red Black Tank",price:80000,img:"https://z-cdn-media.chatglm.cn/files/2b58896e-de82-4971-a297-efeb505df8b7.png?auth_key=1884251134-70a074f3469f4f85af0a8c0c6010d2e2-0-1b0273ef03b912a9554381f9b683b83b",specs:"Dryfit Premium / Fullprint / Red Black Tank Top"},
+  {code:"JSE-C01",name:"Jersey Cycling Ecosport Brown Dark",price:110000,img:"https://z-cdn-media.chatglm.cn/files/3257a236-6711-4bfd-ad48-ff15adca040a.png?auth_key=1884251134-338fee63c0274c7d85290bb22d06e921-0-241aba23954473dbd177f76cb4b28f94",specs:"Dryfit Premium / Fullprint / Brown Black Cycling"},
+  {code:"JSE-V11",name:"Jersey Voli Sidorejo Club 88",price:85000,img:"https://z-cdn-media.chatglm.cn/files/bdde2179-cff0-4500-b87c-2cf131475631.png?auth_key=1884251134-4986305bf23145e5ad01511cea62c9ab-0-d421e02a4286501121dd7631dc09f51e",specs:"Dryfit Premium / Fullprint / Blue White"},
+  {code:"JSE-V12",name:"Jersey Voli Yonif 893 Black White",price:85000,img:"https://z-cdn-media.chatglm.cn/files/62a0d174-912b-4524-9735-90e636c7d0a6.png?auth_key=1884251134-87642435d4184eada7b38be93ff97c03-0-520c107b80c2976204cee90e314ffaa3",specs:"Dryfit Premium / Fullprint / Black White Ethnic"},
+  {code:"JSE-V13",name:"Jersey Voli Eagle Red Black",price:85000,img:"https://z-cdn-media.chatglm.cn/files/292897ec-c4ca-4706-baf3-9c5d991b0c3e.png?auth_key=1884251134-89a744c04de44963962a1f141f44ee81-0-dac74f396acb974ae91b7f467bb035b0",specs:"Dryfit Premium / Fullprint / Red Black Eagle"},
+  {code:"JSE-V14",name:"Jersey Voli Blue Red Gold",price:85000,img:"https://z-cdn-media.chatglm.cn/files/60b5b7b1-4468-47fa-a6e2-29bbe4962fc7.png?auth_key=1884251134-3a55b40cd0154a66ae64ff96ab5a1e96-0-88ba425c219946fe1d17b91c74b8aee9",specs:"Dryfit Premium / Fullprint / Blue Red Gold"},
+  {code:"JSE-V15",name:"Jersey D2SN Dark Blue",price:75000,img:"https://z-cdn-media.chatglm.cn/files/358d9aa5-0fe0-45d0-8841-7a16259712b6.png?auth_key=1884261636-6feaf13a54cf4eada9e017b194251311-0-86a7e32124a39d4ccdffae08a1a28bb3",specs:"Dryfit Premium / Fullprint / Dark Blue Modern"}
 ];
 
-var grid = document.getElementById("productGrid");
-for(var i = 0; i < products.length; i++){
-  var p = products[i];
-  var idx = i;
-  var card = document.createElement("div");
-  card.className = "product-card";
-  card.setAttribute("data-idx", idx);
-  card.onclick = function(){
-    var pi = parseInt(this.getAttribute("data-idx"));
-    openOrderModal(pi);
+var gridHTML = '';
+// Fungsi Detail Kain
+function closeFabricDetail() {
+  document.getElementById("fabricDetailModal").style.display = "none";
+}
+
+// Tambahkan event listener ke setiap kartu kain
+document.querySelectorAll('.fabric-card').forEach(function(card) {
+  card.addEventListener('click', function() {
+    var imgSrc = this.querySelector('.fabric-img').src;
+    var name = this.querySelector('h3').innerText;
+    var desc = this.querySelector('p').innerText;
+    
+    document.getElementById("detailFabricImg").src = imgSrc;
+    document.getElementById("detailFabricName").innerText = name;
+    document.getElementById("detailFabricDesc").innerText = desc;
+    document.getElementById("fabricDetailModal").style.display = "flex";
+  });
+});products.forEach(function(p, idx) {
+    gridHTML += '<div class="product-card" data-idx="'+idx+'">' +
+        '<div class="stock-badge">Ready</div>' +
+        '<img src="' + p.img + '" alt="' + p.name + '" class="product-img" loading="lazy">' +
+        '<div class="product-info">' +
+        '<div class="product-cat">' + p.name + '</div>' +
+        '<div class="product-code">Kode: ' + p.code + '</div>' +
+        '<div class="product-specs">' + p.specs + '</div>' +
+        '<div class="product-price">Rp ' + p.price.toLocaleString("id-ID") + '</div>' +
+        '<button class="order-btn" data-action="order" data-idx="'+idx+'">Pesan Sekarang</button>' +
+        '</div></div>';
+});
+document.getElementById("productGrid").innerHTML = gridHTML;
+
+document.getElementById("productGrid").addEventListener('click', function(e) {
+    if (e.target.matches('[data-action="order"]')) {
+        var idx = parseInt(e.target.getAttribute('data-idx'));
+        openProductDetail(idx);
+    } else {
+        var card = e.target.closest('.product-card');
+        if (card) {
+            var idx = parseInt(card.getAttribute('data-idx'));
+            openProductDetail(idx);
+        }
+    }
+});
+
+var currentDetailIdx = 0;
+function openProductDetail(idx) {
+  var p = products[idx];
+  currentDetailIdx = idx;
+  document.getElementById("detailProductImg").src = p.img;
+  document.getElementById("detailProductName").innerText = p.name;
+  document.getElementById("detailProductCode").innerText = "Kode: " + p.code;
+  document.getElementById("detailProductSpecs").innerText = p.specs;
+  document.getElementById("detailProductPrice").innerText = "Rp " + p.price.toLocaleString("id-ID");
+  document.getElementById("detailOrderBtn").onclick = function() {
+      openOrderModal(currentDetailIdx);
   };
-  card.innerHTML = '<div class="stock-badge">Ready</div>' +
-    '<img src="' + p.img + '" alt="' + p.name + '" class="product-img" loading="lazy">' +
-    '<div class="product-info">' +
-    '<div class="product-cat">' + p.name + '</div>' +
-    '<div class="product-code">Kode: ' + p.code + '</div>' +
-    '<div class="product-specs">' + p.specs + '</div>' +
-    '<div class="product-price">Rp ' + p.price.toLocaleString("id-ID") + '</div>' +
-    '<button class="order-btn" onclick="event.stopPropagation();openOrderModal(' + idx + ');">Pesan Sekarang</button>' +
-    '</div>';
-  grid.appendChild(card);
+  document.getElementById("productDetailModal").style.display="flex";
+}
+function closeProductDetail() {
+  document.getElementById("productDetailModal").style.display="none";
 }
 
 function showPromo(type){
@@ -421,6 +520,7 @@ function closePromo(){document.getElementById("promoModal").style.display="none"
 
 var currentProduct={};
 function openOrderModal(idx){
+  closeProductDetail(); 
   var p=products[idx];
   currentProduct={code:p.code,name:p.name,price:p.price,img:p.img};
   document.getElementById("modalProductName").value=p.name;
@@ -484,60 +584,28 @@ function loadOrders(){
 function viewOrderDetail(id){var orders=getOrders();var o=orders.find(function(x){return x.id===id;});if(!o)return;document.getElementById("adminOrderDetail").innerHTML='<img src="'+o.img+'" class="detail-img"><div class="detail-row"><span>Kode</span><strong>'+o.code+'</strong></div><div class="detail-row"><span>Produk</span><strong>'+o.product+'</strong></div><div class="detail-row"><span>Nama</span><strong>'+o.customer+'</strong></div><div class="detail-row"><span>WA</span><strong><a href="https://wa.me/'+o.phone.replace(/[^0-9]/g,"")+'" target="_blank" style="color:var(--biru)">'+o.phone+'</a></strong></div><div class="detail-row"><span>Ukuran/Qty</span><strong>'+o.size+' / '+o.qty+' Pcs</strong></div><div class="detail-row"><span>Total</span><strong style="color:var(--merah)">Rp '+(o.price*o.qty).toLocaleString("id-ID")+'</strong></div><button class="btn-action btn-pdf" style="width:100%;margin-top:15px;padding:12px;justify-content:center;" onclick="downloadPDF('+o.id+')"><i class="fas fa-file-pdf"></i> Download PDF</button>';document.getElementById("adminOrderModal").style.display="flex";}
 function closeAdminModal(){document.getElementById("adminOrderModal").style.display="none";}
 function updateStatus(id){var orders=getOrders();var o=orders.find(function(x){return x.id===id;});if(o){o.status=o.status==="Baru"?"Selesai":"Baru";saveOrders(orders);showToast("Status diperbarui: "+o.status,"#00F0FF");loadOrders();}}
-function clearOrders(){if(confirm("Hapus semua data pesanan?")){inMemoryOrders=[];if(hasLocalStorage){try{localStorage.removeItem("orders");}catch(e){}}loadOrders();showToast("Semua data pesanan dihapus.","#E10600");}}
 
-function exportCSV(){var orders=getOrders();if(!orders||orders.length===0){showToast("Tidak ada data.","#E10600");return;}var csv="ID,Waktu,Produk,Harga,Nama,NoWA,Ukuran,Qty,Total,Status\r\n";orders.forEach(function(o){csv+=o.id+',"'+o.date+'","'+o.product+'",'+(o.price||0)+',"'+o.customer+'","'+o.phone+'","'+o.size+'",'+(o.qty||0)+','+(o.price||0)*(o.qty||0)+',"'+o.status+'"\r\n';});var blob=new Blob([csv],{type:"text/csv;charset=utf-8;"});var link=document.createElement("a");link.href=URL.createObjectURL(blob);link.download="Pesanan_EcoSport.csv";link.style.display="none";document.body.appendChild(link);link.click();document.body.removeChild(link);showToast("CSV berhasil di-export!","#8e44ad");}
-
-function showToast(msg,color){var t=document.createElement("div");t.className="toast-notification";t.innerHTML='<i class="fas fa-info-circle"></i> '+msg;t.style.background=color||"#333";document.body.appendChild(t);setTimeout(function(){t.classList.add("show");},10);setTimeout(function(){t.classList.remove("show");setTimeout(function(){document.body.removeChild(t);},500);},3000);}
+function clearOrders(){if(confirm("Hapus semua pesanan?")){inMemoryOrders=[];if(hasLocalStorage){try{localStorage.removeItem("orders");}catch(e){}}loadOrders();showToast("Semua pesanan dihapus!","#E10600");}}
 
 function downloadPDF(id){
   var orders=getOrders();var o=orders.find(function(x){return x.id===id;});if(!o)return;
-  closeAdminModal();showToast("PDF sedang dibuat...","#00F0FF");
-  try{
-    var jsPDF=window.jspdf.jsPDF;var doc=new jsPDF();
-    doc.setFillColor(225,6,0);doc.rect(0,0,210,40,"F");
-    doc.setTextColor(255,255,255);doc.setFontSize(22);doc.setFont("helvetica","bold");
-    doc.text("INVOICE PESANAN",105,20,{align:"center"});
-    doc.setFontSize(14);doc.text("KONVEKSI JERSEY ECO SPORT",105,30,{align:"center"});
-    doc.setTextColor(0,0,0);doc.setFontSize(12);var y=55;
-    doc.setFont("helvetica","bold");doc.text("Detail Pesanan:",20,y);y+=10;
-    var details=[["Kode Produk",o.code],["Nama Produk",o.product],["Harga Satuan","Rp "+(o.price||0).toLocaleString("id-ID")],["Nama Pemesan",o.customer],["No WhatsApp",o.phone],["Ukuran",o.size],["Jumlah",o.qty+" pcs"],["Total Bayar","Rp "+((o.price||0)*(o.qty||0)).toLocaleString("id-ID")],["Status",o.status],["Waktu Pesan",o.date]];
-    details.forEach(function(d){doc.setFont("helvetica","bold");doc.text(d[0]+":",20,y);doc.setFont("helvetica","normal");doc.text(String(d[1]),80,y);y+=8;});
-    y+=10;doc.setDrawColor(225,6,0);doc.line(20,y,190,y);y+=10;
-    doc.setFontSize(10);doc.setTextColor(100,100,100);
-    doc.text("Terima kasih atas pesanan Anda. Konveksi Jersey Eco Sport.",105,y,{align:"center"});
-    doc.text("Ruko Pak Eko, Jl. Raya Prabumulih, OKU Timur, Sumsel",105,y+6,{align:"center"});
-    doc.text("WA: 0857-6806-8165 | 0821-8262-6325",105,y+12,{align:"center"});
-    doc.save("Invoice_"+o.code+"_"+o.customer+".pdf");
-    showToast("PDF berhasil di-download!","#27ae60");
-  }catch(e){console.error("PDF Error:",e);showToast("Gagal membuat PDF: "+e.message,"#E10600");}
+  var doc=new jspdf.jsPDF();
+  doc.setFont("helvetica","bold");doc.setFontSize(18);doc.text("DETAIL PESANAN - ECO SPORT",10,20);
+  doc.setFont("helvetica","normal");doc.setFontSize(12);
+  doc.text("Kode Produk: "+o.code,10,35);doc.text("Nama Produk: "+o.product,10,45);doc.text("Nama Pemesan: "+o.customer,10,55);doc.text("No. WhatsApp: "+o.phone,10,65);doc.text("Ukuran: "+o.size,10,75);doc.text("Jumlah: "+o.qty+" pcs",10,85);doc.text("Total Harga: Rp "+(o.price*o.qty).toLocaleString("id-ID"),10,95);doc.text("Status: "+o.status,10,105);doc.text("Waktu Pesan: "+o.date,10,115);
+  doc.save("Pesanan-"+o.id+".pdf");showToast("PDF berhasil diunduh!","#27ae60");
 }
 
-/* ================= FITUR DARK/LIGHT MODE (PERBAIKAN) ================= */
-function applyTheme(theme) {
-  var btn = document.getElementById('theme-toggle-btn');
-  if (theme === 'light') {
-    document.body.classList.add('light-mode');
-    if(btn) btn.innerHTML = '<i class="fas fa-moon"></i>';
-  } else {
-    document.body.classList.remove('light-mode');
-    if(btn) btn.innerHTML = '<i class="fas fa-sun"></i>';
-  }
+function exportCSV(){
+  var orders=getOrders();if(orders.length===0){showToast("Tidak ada data untuk diekspor!","#E10600");return;}
+  var csv="Waktu,Produk,Nama,WA,Ukuran,Qty,Total,Status\n";
+  orders.forEach(function(o){csv+='"'+o.date+'","'+o.product+'","'+o.customer+'","'+o.phone+'","'+o.size+'",'+o.qty+','+(o.price*o.qty)+',"'+o.status+'"\n';});
+  var blob=new Blob([csv],{type:"text/csv"});var url=URL.createObjectURL(blob);var a=document.createElement("a");a.href=url;a.download="pesanan-ecosport.csv";a.click();showToast("CSV berhasil diekspor!","#27ae60");
 }
 
-function toggleTheme() {
-  var isLight = document.body.classList.contains('light-mode');
-  var newTheme = isLight ? 'dark' : 'light';
-  applyTheme(newTheme);
-  try { localStorage.setItem('ecoSportTheme', newTheme); } catch(e) {}
-}
+function showToast(msg, color){var t=document.createElement("div");t.className="toast-notification";t.style.background=color||"#333";t.innerText=msg;document.body.appendChild(t);setTimeout(function(){t.classList.add("show");},50);setTimeout(function(){t.classList.remove("show");setTimeout(function(){if(t.parentNode)document.body.removeChild(t);},500);},3000);}
 
-try {
-  var savedTheme = localStorage.getItem('ecoSportTheme') || 'dark';
-  applyTheme(savedTheme);
-} catch(e) {
-  applyTheme('dark');
-}
+function toggleTheme(){document.body.classList.toggle("light-mode");var btn=document.getElementById("theme-toggle-btn");if(document.body.classList.contains("light-mode")){btn.innerHTML='<i class="fas fa-moon"></i>';} else {btn.innerHTML='<i class="fas fa-sun"></i>';}}
 </script>
 </body>
 </html>
