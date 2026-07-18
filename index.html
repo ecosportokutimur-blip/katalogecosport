@@ -18,12 +18,17 @@ h1,h2,h3{font-family:'Rajdhani',sans-serif;text-transform:uppercase}
 .product-card, .product-img {will-change:transform; backface-visibility:hidden; -webkit-backface-visibility:hidden;}
 
 .catalog-header{text-align:center;padding:120px 20px 50px;position:relative;overflow:hidden;border-bottom:2px solid var(--merah);transition:background 0.4s ease}
-.catalog-header::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(0,240,255,0.03) 10px,rgba(0,240,255,0.03) 20px);z-index:0}
-.catalog-header h1{font-family:'Audiowide',cursive;font-size:60px;position:relative;z-index:2;color:#fff;text-shadow:0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(225,6,0,.8),0 1px 3px rgba(225,6,0,.8),0 3px 5px rgba(225,6,0,.5),0 5px 10px rgba(225,6,0,.4),0 10px 10px rgba(225,6,0,.3),0 20px 20px rgba(225,6,0,.2);line-height:1.1;letter-spacing:2px;transition:color 0.4s, text-shadow 0.4s}
+.catalog-header::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(0,240,255,0.03) 10px,rgba(0,240,255,0.03) 20px);z-index:1}
+
+/* Background Header Image & Animation */
+.header-bg-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0.4;z-index:0;pointer-events:none;animation:slowZoom 20s ease-in-out infinite alternate}
+@keyframes slowZoom{0%{transform:scale(1)}100%{transform:scale(1.15)}}
+
+.catalog-header h1{font-family:'Audiowide',cursive;font-size:60px;position:relative;z-index:3;color:#fff;text-shadow:0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(225,6,0,.8),0 1px 3px rgba(225,6,0,.8),0 3px 5px rgba(225,6,0,.5),0 5px 10px rgba(225,6,0,.4),0 10px 10px rgba(225,6,0,.3),0 20px 20px rgba(225,6,0,.2);line-height:1.1;letter-spacing:2px;transition:color 0.4s, text-shadow 0.4s}
 .catalog-header h1 span{color:#fff;text-shadow:0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(225,6,0,.8),0 1px 3px rgba(225,6,0,.8),0 3px 5px rgba(225,6,0,.5),0 5px 10px rgba(225,6,0,.4),0 10px 10px rgba(225,6,0,.3),0 20px 20px rgba(225,6,0,.2)}
-.hero-subtitle{color:var(--biru);margin-top:20px;position:relative;z-index:2;font-family:'Rajdhani';font-size:24px;font-weight:700;letter-spacing:4px}
-.hero-desc{color:#aaa;max-width:600px;margin:20px auto 0;position:relative;z-index:2;font-size:16px;line-height:1.6;transition:color 0.4s}
-.header-logos{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.hero-subtitle{color:var(--biru);margin-top:20px;position:relative;z-index:3;font-family:'Rajdhani';font-size:24px;font-weight:700;letter-spacing:4px}
+.hero-desc{color:#aaa;max-width:600px;margin:20px auto 0;position:relative;z-index:3;font-size:16px;line-height:1.6;transition:color 0.4s}
+.header-logos{position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;pointer-events:none}
 .header-logo{position:absolute;top:25px;height:80px;object-fit:contain;filter:drop-shadow(0 10px 15px rgba(225,6,0,0.5));animation:logoSpin 8s linear infinite;pointer-events:auto}
 .header-logo:first-child{left:30px}
 .header-logo:nth-child(2){right:30px;animation-delay:-4s}
@@ -234,6 +239,7 @@ body.light-mode #theme-toggle-btn{background:linear-gradient(135deg, #FFF, #E5E7
 
 <div id="view-catalog">
 <header class="catalog-header">
+<img src="https://images.unsplash.com/photo-1781928394593-f209aba3cad7?fm=jpg&q=60&w=3000&auto=format&fit=crop" alt="Background" class="header-bg-img">
 <div class="header-logos">
 <img src="https://z-cdn-media.chatglm.cn/files/6e676aa1-7016-4b6c-82e1-f47d96e6dbe2.png?auth_key=1884171185-923e9227d5604f89a12c7e81ea5e595a-0-24615c8f9a4d14565d93c6d4f7a15af1" alt="Logo" class="header-logo">
 <img src="https://z-cdn-media.chatglm.cn/files/841e7ae3-6677-4fce-a0de-fed191ddd8af.png?auth_key=1884171185-63c9ed10451f4f96919b9b1de3a614a3-0-30e0f219ba7a196f6341207f80db16e9" alt="Logo" class="header-logo">
@@ -405,7 +411,7 @@ body.light-mode #theme-toggle-btn{background:linear-gradient(135deg, #FFF, #E5E7
 <div class="stat-card"><div><h3 id="totalPcs">0</h3><p>Total Item</p></div><i class="fas fa-tshirt"></i></div>
 <div class="stat-card red"><div><h3 id="totalRevenue">Rp 0</h3><p>Omzet</p></div><i class="fas fa-coins"></i></div>
 </div>
-<div class="card-admin"><div class="card-header"><h2>Pesanan Terbaru</h2><div><button class="btn-action btn-refresh" onclick="loadOrders()"><i class="fas fa-sync-alt"></i> Refresh</button></div></div><table><thead><tr><th>ID</th><th>Produk</th><th>Pelanggan</th><th>Ukuran</th><th>Qty</th><th>Status</th></tr></thead><tbody id="recentOrdersTable"></tbody></table></div>
+<div class="card-admin"><div class="card-header"><h2>Pesanan Terbaru</h2><div><button class="btn-action btn-refresh" onclick="loadOrders()"><i class="fas fa-sync-alt"></i> Refresh</button></div></div><table><thead><tr><th>ID</th><th>Produk</th><th>Pelanggan</th><th>Ukuran</th><th>Qty</th><th>Status</th><th>Aksi</th></tr></thead><tbody id="recentOrdersTable"></tbody></table></div>
 </div>
 <div id="admin-orders" style="display:none;">
 <div class="card-header" style="margin-bottom:30px;"><div><h1>Manajemen Pesanan</h1><p>Kelola semua pesanan</p></div><button class="btn-action btn-back" onclick="switchView('catalog')"><i class="fas fa-arrow-left"></i> Kembali</button></div>
@@ -575,7 +581,6 @@ function checkAdminPass(){
         document.getElementById("admin-login").style.display="none";
         document.getElementById("admin-content").style.display="flex";
         loadOrders();
-        updateStats();
     } else {
         showToast("Sandi salah!","#E10600");
     }
@@ -599,8 +604,7 @@ function switchTab(tab, el) {
     if(el) el.classList.add('active');
     document.getElementById('admin-dashboard').style.display = (tab === 'dashboard') ? 'block' : 'none';
     document.getElementById('admin-orders').style.display = (tab === 'orders') ? 'block' : 'none';
-    if(tab === 'dashboard') updateStats();
-    if(tab === 'orders') loadOrders();
+    if(tab === 'dashboard' || tab === 'orders') loadOrders();
 }
 
 function loadOrders() {
@@ -612,9 +616,24 @@ function loadOrders() {
         return (status === 'all' || o.status === status) && (o.product.toLowerCase().includes(search) || o.customer.toLowerCase().includes(search));
     });
     
+    // Update Stats Secara Otomatis setiap loadOrders dipanggil
+    updateStats();
+    
     var tbRecent = document.getElementById('recentOrdersTable');
     var recent = filtered.slice(-5).reverse();
-    if(tbRecent) tbRecent.innerHTML = recent.length ? recent.map(o => `<tr><td>${o.id}</td><td>${o.product}</td><td>${o.customer}</td><td>${o.size}</td><td>${o.qty}</td><td><span class="badge ${o.status==='Baru'?'badge-new':'badge-done'}">${o.status}</span></td></tr>`).join('') : '<tr><td colspan="6" class="empty-state">Belum ada pesanan</td></tr>';
+    if(tbRecent) tbRecent.innerHTML = recent.length ? recent.map(o => `<tr>
+      <td>${o.id}</td>
+      <td>${o.product}</td>
+      <td>${o.customer}</td>
+      <td>${o.size}</td>
+      <td>${o.qty}</td>
+      <td><span class="badge ${o.status==='Baru'?'badge-new':'badge-done'}">${o.status}</span></td>
+      <td>
+        <button class="btn-action btn-view" onclick="viewOrder(${o.id})"><i class="fas fa-eye"></i></button>
+        <button class="btn-action btn-back" onclick="toggleStatus(${o.id})"><i class="fas fa-sync"></i></button>
+        <button class="btn-action btn-danger" onclick="deleteOrder(${o.id})"><i class="fas fa-trash"></i></button>
+      </td>
+    </tr>`).join('') : '<tr><td colspan="7" class="empty-state">Belum ada pesanan</td></tr>';
     
     var tbAll = document.getElementById('allOrdersTable');
     if(tbAll) tbAll.innerHTML = filtered.length ? filtered.reverse().map(o => `<tr><td>${o.date}</td><td>${o.product}</td><td>${o.customer}</td><td>${o.size} / ${o.qty} pcs<br><a href="https://wa.me/${o.phone}" target="_blank" style="color:var(--biru)">${o.phone}</a></td><td><span class="badge ${o.status==='Baru'?'badge-new':'badge-done'}">${o.status}</span></td><td><button class="btn-action btn-view" onclick="viewOrder(${o.id})"><i class="fas fa-eye"></i></button><button class="btn-action btn-back" onclick="toggleStatus(${o.id})"><i class="fas fa-sync"></i></button><button class="btn-action btn-danger" onclick="deleteOrder(${o.id})"><i class="fas fa-trash"></i></button></td></tr>`).join('') : '<tr><td colspan="6" class="empty-state">Tidak ada data</td></tr>';
@@ -655,7 +674,6 @@ function toggleStatus(id) {
         orders[idx].status = orders[idx].status==='Baru'?'Selesai':'Baru';
         saveOrders(orders);
         loadOrders();
-        updateStats();
     }
 }
 
@@ -663,7 +681,6 @@ function deleteOrder(id) {
     if(confirm('Hapus pesanan ini?')) {
         saveOrders(getOrders().filter(x=>x.id!==id));
         loadOrders();
-        updateStats();
         showToast("Pesanan dihapus","#da3633");
     }
 }
@@ -672,7 +689,6 @@ function clearOrders() {
     if(confirm('Hapus SEMUA pesanan?')) {
         saveOrders([]);
         loadOrders();
-        updateStats();
         showToast("Semua pesanan dihapus","#da3633");
     }
 }
@@ -682,7 +698,6 @@ function clearAllStorage() {
         localStorage.clear();
         inMemoryOrders = [];
         loadOrders();
-        updateStats();
         showToast("Semua data dihapus","#da3633");
     }
 }
@@ -696,7 +711,6 @@ function addDummyData() {
     orders = orders.concat(dummy.filter(d => !orders.find(o=>o.id===d.id)));
     saveOrders(orders);
     loadOrders();
-    updateStats();
     showToast("Data dummy ditambahkan","#d29922");
 }
 
