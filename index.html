@@ -17,7 +17,7 @@ h1,h2,h3{font-family:'Rajdhani',sans-serif;text-transform:uppercase}
 .product-card, .product-img {will-change:transform; backface-visibility:hidden; -webkit-backface-visibility:hidden;}
 
 .catalog-header{text-align:center;padding:120px 20px 50px;position:relative;overflow:hidden;border-bottom:2px solid var(--merah);transition:background 0.4s ease}
-.catalog-header::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(0,240,255,0.03) 10px,rgba(0,240,255,0.03) 20px);z-index:1}
+.catalog-header::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(0,0,0,0.0) 10px,rgba(0,0,0,0.0) 20px);z-index:1}
 
 .header-bg-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0.4;z-index:0;pointer-events:none;animation:slowZoom 20s ease-in-out infinite alternate}
 @keyframes slowZoom{0%{transform:scale(1)}100%{transform:scale(1.15)}}
@@ -242,7 +242,7 @@ body.light-mode #detailProductName{color:#111827}
 body.light-mode #detailProductSpecs{color:#4B5563}
 body.light-mode #detailProductImg{background:#F3F4F6;border-color:#E5E7EB}
 body.light-mode .download-btn{border-color:#0284C7;color:#0284C7}
-body.light-mode .close-modal{color:#111;} /* PERUBAHAN X JADI HITAM DI MODE TERANG */
+body.light-mode .close-modal{color:#111;}
 body.light-mode .sidebar{background:#FFFFFF;border-right-color:#E5E7EB;box-shadow:2px 0 5px rgba(0,0,0,0.05)}
 body.light-mode .menu-item{color:#4B5563}
 body.light-mode .menu-item:hover{background:#F3F4F6;color:#111827}
@@ -295,7 +295,7 @@ body.light-mode #theme-toggle-btn{background:linear-gradient(135deg, #FFF, #E5E7
 </div>
 </div>
 <div class="promo-banner">
-<div class="promo-card" onclick="showPromo('tim')"><div class="promo-icon">&#x1F525;</div><div class="promo-text"><h3>PROMO TIM</h3><p>Diskon 10% khusus pemesanan minimal 20 pcs.</p></div></div>
+<div class="promo-card" onclick="showPromo('tim')"><div class="promo-icon">&#x1F525;</div><div class="promo-text"><h3>PROMO TIM</h3><p>Gratis Baju Jersey ECO Sport khusus pemesanan minimal 20 pcs.</p></div></div>
 <div class="promo-card" onclick="showPromo('bahan')"><div class="promo-icon">&#x1F455;</div><div class="promo-text"><h3>BAHAN BERKUALITAS</h3><p>Material premium adem, menyerap keringat, nyaman dipakai.</p></div></div>
 <div class="promo-card" onclick="showPromo('express')"><div class="promo-icon">&#x26A1;</div><div class="promo-text"><h3>EXPRESS SERVICE</h3><p>Butuh cepat? Layanan pengerjaan 3 hari jadi.</p></div></div>
 </div>
@@ -356,7 +356,7 @@ body.light-mode #theme-toggle-btn{background:linear-gradient(135deg, #FFF, #E5E7
 </div>
 </div>
 
-<div class="section-title"><h2>KOLEKSI <span>JERSEY PILIHAN</span></h2><p>37 desain jersey premium siap pakai. Klik untuk detail & download gambar!</p></div>
+<div class="section-title"><h2>KOLEKSI <span>JERSEY PILIHAN</span></h2><p>45 desain jersey premium siap pakai. Klik untuk detail & download gambar!</p></div>
 <div class="product-grid" id="productGrid"></div>
 
 <div class="section-title"><h2>LOKASI <span>KAMI</span></h2><p>Kunjungi toko fisik kami untuk lihat langsung bahan dan sampel baju jersey.</p></div>
@@ -498,346 +498,359 @@ var products = [
   {code:"JSE-V23",name:"Jersey Voli Another Level Green",price:85000,img:"https://z-cdn-media.chatglm.cn/files/c4c6f1c7-d9d8-45b3-88c7-39af502a3bf4.png?auth_key=1885027636-65815308c55941bb8da863f8bab7c5fc-0-ef5c98b59ef480df37a65caa973c0009",specs:"Dryfit Premium / Fullprint / Green White Another Level No 16"},
   {code:"JSE-V24",name:"Jersey Voli Blue Modern",price:85000,img:"https://z-cdn-media.chatglm.cn/files/e449ce19-d3d9-456a-b979-9a87a0a066ac.png?auth_key=1885027636-7154537ee52e426dadd9e0e4f153b5e4-0-feae6b7c77cd7a4ccd8e34dfc10cb06b",specs:"Dryfit Premium / Fullprint / Blue Modern"},
   {code:"JSE-V25",name:"Jersey Voli Asik No 7",price:85000,img:"https://z-cdn-media.chatglm.cn/files/3786ada4-dfca-49af-83ff-659c1933ee05.png?auth_key=1885027636-2954372adb91425eaa0a159bf4164ca5-0-b9e3be5d282e68c79dd62e2639871ea1",specs:"Dryfit Premium / Fullprint / Voli Asik Player No 7"},
-  {code:"JSE-V26",name:"Jersey Voli Santai No 10",price:85000,img:"https://z-cdn-media.chatglm.cn/files/65bd25c0-3641-492c-9153-bbd7b8fce695.png?auth_key=1885027636-3d0addd36cf54f0cb1319cd16a5d1c09-0-2a80f7c2aa934b6ce3d4f02854015e84",specs:"Dryfit Premium / Fullprint / Voli Santai No 10"},
-  {code:"JSE-V27",name:"Jersey Voli Brigif TP 46",price:85000,img:"https://z-cdn-media.chatglm.cn/files/79c87e8c-f04e-438b-b76b-4ad05b335e33.png?auth_key=1885027636-b3d051c0f4b04939ac70ffffa42dfef0-0-4c5efb8028236dd089dd88724e2a1b07",specs:"Dryfit Premium / Fullprint / Brigif TP 46 Sebiduk Cakti No 88"},
-  {code:"JSE-V28",name:"Jersey Voli Permata Wine Red",price:85000,img:"https://z-cdn-media.chatglm.cn/files/70df0d74-1065-4882-97cb-f7596f3569e1.png?auth_key=1885027636-388afa8998d64106ac3835381395807f-0-fc89434b7b238bf10ddeda1109332847",specs:"Dryfit Premium / Fullprint / Wine Red Permata Another Level No 10"}
+  {code:"JSE-V26",name:"Jersey Voli Santai No 10",price:85000,img:"https://z-cdn-media.chatglm.cn/files/65bd25c0-3641-492c-9153-bbd7b8fce695.png?auth_key=1885027636-3d0addd36cf54f0cb1319cd16a5d1c09-0-2a80f7c2aa934b6ce3d4f02854015e84",specs:"Dryfit Premium / Fullprint / Voli Santai Player No 10"},
+  {code:"JSE-V27",name:"Jersey Bakul Bakso Mbak Mai",price:85000,img:"https://z-cdn-media.chatglm.cn/files/8ee6f2b1-04d1-48da-80b8-9458c0bf3225.jpg?auth_key=1885668639-629262c78fe54622b89e53a3314f1756-0-a6cbda882ca24020dfc6ca188a43ee0f",specs:"Dryfit Premium / Fullprint / Black Cartoon Bakul Bakso Mbak Mai"},
+  {code:"JSE-V28",name:"Jersey Voli Atlet Indonesia Green Gold",price:85000,img:"https://z-cdn-media.chatglm.cn/files/5e546ec5-53ee-4b08-b0df-b4ea1f34d9e8.jpg?auth_key=1885668639-f163e4c17b0e482781146c4762ad32fa-0-97989efd1436a2814582a425f17da205",specs:"Dryfit Premium / Fullprint / Dark Green Gold Volleyball Atlet Indonesia No 7"},
+  {code:"JSE-V29",name:"Jersey KORPRI Blue Gold Longsleeve",price:110000,img:"https://z-cdn-media.chatglm.cn/files/ef0aab45-1ee3-4774-af22-265a4a433d91.jpg?auth_key=1885668639-93e3f9fce27040f78494e320bd6c3b09-0-6552637744fa68a8ce01b320b772dc6e",specs:"Dryfit Premium / Fullprint / Blue Gold Korpri Longsleeve"},
+  {code:"JSE-V30",name:"Jersey Polo Karang Taruna Metro Rejo",price:95000,img:"https://z-cdn-media.chatglm.cn/files/5e677d89-d67f-4a82-a3c7-b4fe5ca36dea.jpg?auth_key=1885668639-7ea6d43930ef41fab40664edb367d11f-0-42f09a988b8182ce1d9ffd9c1dfd53ad",specs:"Dryfit Premium / Fullprint / Dark Blue Polo Karang Taruna Metro Rejo"},
+  {code:"JSE-V31",name:"Jersey Voli Player Lurah EEE Black Orange",price:85000,img:"https://z-cdn-media.chatglm.cn/files/f28484ae-75cc-437d-84df-9efce8fe36c9.jpg?auth_key=1885668639-98ed196a514346149b086a508e626b05-0-441e5f34d4c74a2ce5a064af5de5c8d2",specs:"Dryfit Premium / Fullprint / Black Orange Fish Pattern Player No 6"},
+  {code:"JSE-V32",name:"Jersey Voli Indonesia 17 Red White",price:110000,img:"https://z-cdn-media.chatglm.cn/files/1765f177-33d5-475b-841a-b6b7f4520d7e.jpg?auth_key=1885668639-195fb7feb9c2438fa42b696c92203823-0-3343b5fa6ee0512e0b759fb3833391d4",specs:"Dryfit Premium / Fullprint / Red White Indonesia No 17"},
+  {code:"JSE-V33",name:"Jersey Voli Lengot FC Jayapura",price:85000,img:"https://z-cdn-media.chatglm.cn/files/4374103f-34e3-4458-a729-44b467dbe114.jpg?auth_key=1885668639-33cca9539d5949229bd1c5498a941b82-0-3063f69ff62b0a8d8dd328b7ccf12208",specs:"Dryfit Premium / Fullprint / Red Black Lengot FC Jayapura No 5"},
+  {code:"JSE-V34",name:"Jersey Voli Gaboja Blue Black",price:85000,img:"https://z-cdn-media.chatglm.cn/files/bd2c5a6a-9c43-427e-a7b9-a1a309cef6de.jpg?auth_key=1885668639-138b676dcb754f588f4e2ab521406421-0-bae5455125281271d4259791b7306410",specs:"Dryfit Premium / Fullprint / Blue Black Gaboja No 10"}
 ];
 
 var fabrics = [
-  {name:"Drifit Premium", desc:"100% Polyester. Breathable, Quick Dry, Lightweight. Bahan utama jersey premium.", img:"https://z-cdn-media.chatglm.cn/files/28468642-3f5d-49ea-ae8f-f0f0f89741ff.png?auth_key=1884298416-4e669925a5794a7493ac5b8e1e71b6c5-0-767236a5b712ae8c45341a0357aa6581"},
-  {name:"Embos Premium", desc:"100% Polyester, 150-160cm, 140-150gsm. Lembut, Breathable, Quick Dry.", img:"https://z-cdn-media.chatglm.cn/files/62b8270a-dd30-4b84-a654-fd103c208f53.png?auth_key=1884298416-b58bed81ec5c4fa68641bb6ecbd5f5ce-0-99d3a03d377ae734c5c57fa16b78c3c1"},
-  {name:"PE Premium", desc:"100% Polyester, 150-160cm, 140-150gsm. Ringan, Adem, Elastic, Durable.", img:"https://z-cdn-media.chatglm.cn/files/d6867954-c413-4744-97ff-223c020a800e.png?auth_key=1884298416-e238ee49bea34625840142701288ee11-0-e4bc603bf3e37f5873e8502434832492"},
-  {name:"Kain Serena Premium", desc:"Halus · Mengkilap · Nyaman. 100% Polyester, lebar 150-160cm. Permukaan licin & berkilau.", img:"https://z-cdn-media.chatglm.cn/files/5a7f8d60-74a6-4a05-9f9e-085dd611438d.png?auth_key=1884298085-749cc5a5911341a38ef1d5eac1e326d3-0-1ff9d22f9fe934f0b0f4655de849d798"}
+  {name:"Drifit Premium",img:"https://z-cdn-media.chatglm.cn/files/28468642-3f5d-49ea-ae8f-f0f0f89741ff.png?auth_key=1884298416-4e669925a5794a7493ac5b8e1e71b6c5-0-767236a5b712ae8c45341a0357aa6581",desc:"100% Polyester. Breathable, Quick Dry, Lightweight. Bahan utama jersey premium."},
+  {name:"Embos Premium",img:"https://z-cdn-media.chatglm.cn/files/62b8270a-dd30-4b84-a654-fd103c208f53.png?auth_key=1884298416-b58bed81ec5c4fa68641bb6ecbd5f5ce-0-99d3a03d377ae734c5c57fa16b78c3c1",desc:"100% Polyester, 150-160cm, 140-150gsm. Lembut, Breathable, Quick Dry."},
+  {name:"PE Premium",img:"https://z-cdn-media.chatglm.cn/files/d6867954-c413-4744-97ff-223c020a800e.png?auth_key=1884298416-e238ee49bea34625840142701288ee11-0-e4bc603bf3e37f5873e8502434832492",desc:"100% Polyester, 150-160cm, 140-150gsm. Ringan, Adem, Elastic, Durable."},
+  {name:"Kain Serena Premium",img:"https://z-cdn-media.chatglm.cn/files/5a7f8d60-74a6-4a05-9f9e-085dd611438d.png?auth_key=1884298085-749cc5a5911341a38ef1d5eac1e326d3-0-1ff9d22f9fe934f0b0f4655de849d798",desc:"Halus · Mengkilap · Nyaman. 100% Polyester, lebar 150-160cm. Permukaan licin & berkilau."}
 ];
 
-var placeholderImg = "https://via.placeholder.com/400x500/1a1a1a/00F0FF?text=Gambar+Tidak+Tersedia";
+var promos = {
+  tim: {title:"PROMO TIM",body:"Gratis 1 pcs jersey ECO Sport untuk pemesanan minimal 20 pcs dalam satu desain. Berlaku untuk semua jenis jersey & bahan!",wa:"https://wa.me/6285768068165?text=Halo%20Admin%2C%20saya%20tertarik%20Promo%20Tim%20(pemesanan%2020%20pcs%20gratis%201)"},
+  bahan: {title:"BAHAN BERKUALITAS",body:"Semua jersey kami menggunakan bahan Dryfit Premium yang adem, menyerap keringat, dan nyaman dipakai seharian. Tersedia juga bahan Embos, PE, dan Serena.",wa:"https://wa.me/6285768068165?text=Halo%20Admin%2C%20saya%20mau%20konsultasi%20bahan%20jersey"},
+  express: {title:"EXPRESS SERVICE",body:"Butuh jersey cepat? Gunakan layanan Express Service kami — pengerjaan hanya 3 hari kerja! Cocok untuk event mendadak atau turnamen.",wa:"https://wa.me/6285768068165?text=Halo%20Admin%2C%20saya%20tertarik%20Express%20Service%20(3%20hari%20jadi)"}
+};
 
-var gridHTML = '';
+var currentProduct = null;
+var currentTheme = localStorage.getItem('eco-theme') || 'dark';
 
-// Fungsi Download Gambar (universal untuk produk & kain)
-function downloadImage(url, filename) {
-  fetch(url)
-    .then(function(response) { return response.blob(); })
-    .then(function(blob) {
-      var a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      setTimeout(function() { URL.revokeObjectURL(a.href); }, 100);
-      showToast("Gambar berhasil diunduh!", "#25D366");
-    })
-    .catch(function() {
-      var a = document.createElement('a');
-      a.href = url;
-      a.download = filename;
-      a.target = '_blank';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      showToast("Gambar dibuka di tab baru (klik kanan > Simpan gambar)", "#00F0FF");
-    });
+function renderProducts(){
+  var grid = document.getElementById('productGrid');
+  grid.innerHTML = '';
+  products.forEach(function(p, i){
+    var cat = 'JERSEY';
+    if(p.code.indexOf('JSE-V')===0) cat = 'VOLI';
+    if(p.code.indexOf('JSE-K')===0) cat = 'KEMERDEKAAN';
+    if(p.code.indexOf('JSE-C')===0) cat = 'CYCLING';
+    if(p.code.indexOf('JSE-NEW')===0) cat = 'NEW ARRIVAL';
+    var card = document.createElement('div');
+    card.className = 'product-card';
+    card.onclick = function(){ openProductDetail(i); };
+    card.innerHTML = '<span class="stock-badge">Ready</span><img src="'+p.img+'" alt="'+p.name+'" class="product-img" loading="lazy"><div class="product-info"><div class="product-cat">'+cat+'</div><div class="product-code">'+p.code+'</div><div class="product-price">Rp '+p.price.toLocaleString('id-ID')+'</div><div class="product-specs">'+p.specs+'</div><button class="order-btn" onclick="event.stopPropagation();openOrderModal('+i+')">Pesan Sekarang</button></div>';
+    grid.appendChild(card);
+  });
 }
 
-// Fungsi Detail Kain
-function closeFabricDetail() {
-  document.getElementById("fabricDetailModal").style.display = "none";
+function openProductDetail(idx){
+  var p = products[idx];
+  currentProduct = p;
+  document.getElementById('detailProductImg').src = p.img;
+  document.getElementById('detailProductName').textContent = p.name;
+  document.getElementById('detailProductCode').textContent = p.code;
+  document.getElementById('detailProductSpecs').textContent = p.specs;
+  document.getElementById('detailProductPrice').textContent = 'Rp '+p.price.toLocaleString('id-ID');
+  document.getElementById('detailOrderBtn').onclick = function(){ closeProductDetail(); openOrderModal(idx); };
+  document.getElementById('productDetailModal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
 }
 
-document.querySelectorAll('.fabric-card').forEach(function(card) {
-  card.addEventListener('click', function() {
+function closeProductDetail(){
+  document.getElementById('productDetailModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+document.getElementById('downloadProductImgBtn').addEventListener('click', function(){
+  if(!currentProduct) return;
+  var a = document.createElement('a');
+  a.href = currentProduct.img;
+  a.download = currentProduct.code + '_' + currentProduct.name.replace(/\s+/g,'_') + '.jpg';
+  a.target = '_blank';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  showToast('Download dimulai!', 'success');
+});
+
+function openFabricDetail(idx){
+  var f = fabrics[idx];
+  document.getElementById('detailFabricImg').src = f.img;
+  document.getElementById('detailFabricName').textContent = f.name;
+  document.getElementById('detailFabricDesc').textContent = f.desc;
+  document.getElementById('downloadFabricBtn').onclick = function(){
+    var a = document.createElement('a');
+    a.href = f.img;
+    a.download = f.name.replace(/\s+/g,'_') + '.png';
+    a.target = '_blank';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    showToast('Download dimulai!', 'success');
+  };
+  document.getElementById('fabricDetailModal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeFabricDetail(){
+  document.getElementById('fabricDetailModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.fabric-card').forEach(function(card){
+  card.addEventListener('click', function(){
     var idx = parseInt(this.getAttribute('data-fabric-idx'));
-    var f = fabrics[idx];
-    document.getElementById("detailFabricImg").src = f.img;
-    document.getElementById("detailFabricImg").onerror = function() { this.onerror=null; this.src=placeholderImg; };
-    document.getElementById("detailFabricName").innerText = f.name;
-    document.getElementById("detailFabricDesc").innerText = f.desc;
-    document.getElementById("downloadFabricBtn").onclick = function() {
-      downloadImage(f.img, f.name.replace(/\s+/g,'_') + '.png');
-    };
-    document.getElementById("fabricDetailModal").style.display = "flex";
+    openFabricDetail(idx);
   });
 });
 
-products.forEach(function(p, idx) {
-    gridHTML += '<div class="product-card" data-idx="'+idx+'">' +
-        '<div class="stock-badge">Ready</div>' +
-        '<img src="' + p.img + '" alt="' + p.name + '" class="product-img" loading="lazy" onerror="this.onerror=null;this.src=\''+placeholderImg+'\';">' +
-        '<div class="product-info">' +
-        '<div class="product-cat">' + p.name + '</div>' +
-        '<div class="product-code">Kode: ' + p.code + '</div>' +
-        '<div class="product-specs">' + p.specs + '</div>' +
-        '<div class="product-price">Rp ' + p.price.toLocaleString("id-ID") + '</div>' +
-        '<button class="order-btn" data-action="order" data-idx="'+idx+'">Pesan Sekarang</button>' +
-        '</div></div>';
-});
-document.getElementById("productGrid").innerHTML = gridHTML;
-
-document.getElementById("productGrid").addEventListener('click', function(e) {
-    if (e.target.matches('[data-action="order"]')) {
-        var idx = parseInt(e.target.getAttribute('data-idx'));
-        openProductDetail(idx);
-    } else {
-        var card = e.target.closest('.product-card');
-        if (card) {
-            var idx = parseInt(card.getAttribute('data-idx'));
-            openProductDetail(idx);
-        }
-    }
-});
-
-var currentDetailIdx = 0;
-function openProductDetail(idx) {
-  var p = products[idx];
-  currentDetailIdx = idx;
-  var imgElement = document.getElementById("detailProductImg");
-  imgElement.src = p.img;
-  imgElement.onerror = function() {
-      this.onerror=null;this.src=placeholderImg;
-  };
-  document.getElementById("detailProductName").innerText = p.name;
-  document.getElementById("detailProductCode").innerText = "Kode: " + p.code;
-  document.getElementById("detailProductSpecs").innerText = p.specs;
-  document.getElementById("detailProductPrice").innerText = "Rp " + p.price.toLocaleString("id-ID");
-  document.getElementById("detailOrderBtn").onclick = function() {
-      openOrderModal(currentDetailIdx);
-  };
-  document.getElementById("downloadProductImgBtn").onclick = function() {
-      var ext = p.img.includes('.png') ? '.png' : '.jpg';
-      downloadImage(p.img, p.code + '_' + p.name.replace(/[^a-zA-Z0-9]/g,'_') + ext);
-  };
-  document.getElementById("productDetailModal").style.display="flex";
-}
-function closeProductDetail() {
-  document.getElementById("productDetailModal").style.display="none";
-}
-
 function showPromo(type){
-  var title=document.getElementById("promoTitle"),body=document.getElementById("promoBody"),waLink=document.getElementById("promoWaLink");
-  var waText="Halo%20Admin,%20saya%20tertarik%20dengan%20promo%20";
-  if(type==="tim"){title.innerText="PROMO TIM";body.innerHTML="Dapatkan <strong>Diskon 10%</strong> khusus pemesanan minimal 11 pcs.<br><br>Cocok untuk turnamen, komunitas, atau acara sekolah!";waText+="Tim (Diskon 10%)";}
-  else if(type==="bahan"){title.innerText="BAHAN BERKUALITAS";body.innerHTML="Kami hanya menggunakan <strong>Material Premium</strong> yang adem, menyerap keringat, dan sangat nyaman.<br><br>Garansi bahan tidak luntur dan tidak melar!";waText+="Bahan%20Berkualitas";}
-  else if(type==="express"){title.innerText="EXPRESS SERVICE";body.innerHTML="Butuh jersey cepat? Kami menyediakan layanan <strong>Pengerjaan 2 Hari Jadi</strong>!<br><br>Syarat dan ketentuan berlaku.";waText+="Express%20Service%20(2%20Hari%20Jadi)";}
-  waLink.href="https://wa.me/6285768068165?text="+waText;
-  document.getElementById("promoModal").style.display="flex";
+  var p = promos[type];
+  if(!p) return;
+  document.getElementById('promoTitle').textContent = p.title;
+  document.getElementById('promoBody').textContent = p.body;
+  document.getElementById('promoWaLink').href = p.wa;
+  document.getElementById('promoModal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
 }
-function closePromo(){document.getElementById("promoModal").style.display="none";}
 
-var currentProduct={};
+function closePromo(){
+  document.getElementById('promoModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
 function openOrderModal(idx){
-  closeProductDetail(); 
-  var p=products[idx];
-  currentProduct={code:p.code,name:p.name,price:p.price,img:p.img};
-  document.getElementById("modalProductName").value=p.name;
-  document.getElementById("orderModal").style.display="flex";
-  document.getElementById("custName").value="";
-  document.getElementById("custPhone").value="";
-  document.getElementById("custQty").value="1";
+  var p = products[idx];
+  document.getElementById('modalProductImg').value = p.img;
+  document.getElementById('modalProductName').value = p.name + ' (' + p.code + ')';
+  document.getElementById('custName').value = '';
+  document.getElementById('custPhone').value = '';
+  document.getElementById('custSize').value = 'L';
+  document.getElementById('custQty').value = '1';
+  document.getElementById('orderModal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
 }
-function closeOrderModal(){document.getElementById("orderModal").style.display="none";}
 
-var hasLocalStorage=true;
-try{localStorage.setItem("__t__","1");localStorage.removeItem("__t__");}catch(e){hasLocalStorage=false;}
-var inMemoryOrders=[];
-
-function getOrders(){
-  if(hasLocalStorage){try{var s=localStorage.getItem("orders");if(s){var p=JSON.parse(s);if(Array.isArray(p))inMemoryOrders=p;}}catch(e){}}
-  return Array.isArray(inMemoryOrders)?inMemoryOrders:[];
+function closeOrderModal(){
+  document.getElementById('orderModal').style.display = 'none';
+  document.body.style.overflow = '';
 }
-function saveOrders(o){inMemoryOrders=Array.isArray(o)?o:[];if(hasLocalStorage){try{localStorage.setItem("orders",JSON.stringify(inMemoryOrders));}catch(e){}}}
 
 function submitOrder(){
-  var cn=document.getElementById("custName").value.trim();
-  var cp=document.getElementById("custPhone").value.trim();
-  var sz=document.getElementById("custSize").value;
-  var qty=document.getElementById("custQty").value||1;
-  var ta=document.getElementById("custAdmin").value;
-  var btn=document.getElementById("waSubmitBtn");
-  if(!cn||!cp){showToast("Mohon lengkapi Nama dan No WhatsApp!","#E10600");return;}
-  var msg="*PESANAN BARU - KONVEKSI JERSEY ECO SPORT*\n\n*Kode:* "+currentProduct.code+"\n*Nama:* "+currentProduct.name+"\n*Harga:* Rp "+currentProduct.price.toLocaleString("id-ID")+"\n*Gambar:* "+currentProduct.img+"\n---------------------\n*Nama:* "+cn+"\n*WA:* "+cp+"\n*Ukuran:* "+sz+"\n*Qty:* "+qty+" pcs\n\nMohon konfirmasi total. Terima kasih.";
-  var waUrl="https://wa.me/"+ta+"?text="+encodeURIComponent(msg);
-  var od={id:Date.now(),code:currentProduct.code,product:currentProduct.name,price:currentProduct.price,img:currentProduct.img,customer:cn,phone:cp,size:sz,qty:qty,status:"Baru",date:new Date().toLocaleString("id-ID")};
-  var orders=getOrders();orders.push(od);saveOrders(orders);
-  btn.innerText="Membuka WhatsApp...";btn.style.background="#128C7E";btn.disabled=true;
-  var win=window.open(waUrl,"_blank");
-  if(win){setTimeout(function(){btn.innerText="Kirim Pesanan via WhatsApp";btn.style.background="#25D366";btn.disabled=false;closeOrderModal();},500);}
-  else{window.location.href=waUrl;}
+  var name = document.getElementById('custName').value.trim();
+  var phone = document.getElementById('custPhone').value.trim();
+  var product = document.getElementById('modalProductName').value;
+  var size = document.getElementById('custSize').value;
+  var qty = document.getElementById('custQty').value;
+  var admin = document.getElementById('custAdmin').value;
+  if(!name){ showToast('Mohon isi nama pemesan','error'); return; }
+  if(!phone){ showToast('Mohon isi nomor WhatsApp','error'); return; }
+  var msg = 'Halo Admin ECO Sport!%0A%0A*Saya ingin memesan:*%0AProduk: '+encodeURIComponent(product)+'%0AUkuran: '+size+'%0AJumlah: '+qty+' pcs%0A%0A*Data Pemesan:*%0ANama: '+encodeURIComponent(name)+'%0AWA: '+encodeURIComponent(phone);
+  var waUrl = 'https://wa.me/'+admin+'?text='+msg;
+
+  var orders = JSON.parse(localStorage.getItem('ecoOrders')||'[]');
+  orders.push({id:'ORD-'+Date.now(),product:product,name:name,phone:phone,size:size,qty:parseInt(qty),status:'Baru',time:new Date().toISOString()});
+  localStorage.setItem('ecoOrders', JSON.stringify(orders));
+
+  window.open(waUrl, '_blank');
+  closeOrderModal();
+  showToast('Pesanan dikirim ke WhatsApp!', 'success');
 }
 
-var ADMIN_PASSWORD="ecosport1";
+function switchView(view){
+  if(view==='admin'){
+    document.getElementById('view-catalog').style.display='none';
+    document.getElementById('view-admin').style.display='block';
+    document.getElementById('admin-content').style.display='none';
+    document.getElementById('admin-login').style.display='flex';
+  } else {
+    document.getElementById('view-catalog').style.display='block';
+    document.getElementById('view-admin').style.display='none';
+  }
+}
+
 function checkAdminPass(){
-    if(document.getElementById("adminPassInput").value===ADMIN_PASSWORD){
-        document.getElementById("admin-login").style.display="none";
-        document.getElementById("admin-content").style.display="flex";
-        loadOrders();
-    } else {
-        showToast("Sandi salah!","#E10600");
-    }
-}
-
-function switchView(view) {
-    if(view === 'catalog') {
-        document.getElementById('view-catalog').style.display = 'block';
-        document.getElementById('view-admin').style.display = 'none';
-    } else {
-        document.getElementById('view-catalog').style.display = 'none';
-        document.getElementById('view-admin').style.display = 'block';
-        document.getElementById('admin-login').style.display = 'flex';
-        document.getElementById('admin-content').style.display = 'none';
-        document.getElementById("adminPassInput").value = "";
-    }
-}
-
-function switchTab(tab, el) {
-    document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
-    if(el) el.classList.add('active');
-    document.getElementById('admin-dashboard').style.display = (tab === 'dashboard') ? 'block' : 'none';
-    document.getElementById('admin-orders').style.display = (tab === 'orders') ? 'block' : 'none';
-    if(tab === 'dashboard' || tab === 'orders') loadOrders();
-}
-
-function loadOrders() {
-    var orders = getOrders();
-    var search = document.getElementById('searchOrder') ? document.getElementById('searchOrder').value.toLowerCase() : '';
-    var status = document.getElementById('filterStatus') ? document.getElementById('filterStatus').value : 'all';
-    
-    var filtered = orders.filter(o => {
-        return (status === 'all' || o.status === status) && (o.product.toLowerCase().includes(search) || o.customer.toLowerCase().includes(search));
-    });
-    
-    updateStats();
-    
-    var tbRecent = document.getElementById('recentOrdersTable');
-    var recent = filtered.slice(-5).reverse();
-    if(tbRecent) tbRecent.innerHTML = recent.length ? recent.map(o => `<tr>
-      <td>${o.id}</td>
-      <td>${o.product}</td>
-      <td>${o.customer}</td>
-      <td>${o.size}</td>
-      <td>${o.qty}</td>
-      <td><span class="badge ${o.status==='Baru'?'badge-new':'badge-done'}">${o.status}</span></td>
-      <td>
-        <button class="btn-action btn-view" onclick="viewOrder(${o.id})"><i class="fas fa-eye"></i></button>
-        <button class="btn-action btn-back" onclick="toggleStatus(${o.id})"><i class="fas fa-sync"></i></button>
-        <button class="btn-action btn-danger" onclick="deleteOrder(${o.id})"><i class="fas fa-trash"></i></button>
-      </td>
-    </tr>`).join('') : '<tr><td colspan="7" class="empty-state">Belum ada pesanan</td></tr>';
-    
-    var tbAll = document.getElementById('allOrdersTable');
-    if(tbAll) tbAll.innerHTML = filtered.length ? filtered.reverse().map(o => `<tr><td>${o.date}</td><td>${o.product}</td><td>${o.customer}</td><td>${o.size} / ${o.qty} pcs<br><a href="https://wa.me/${o.phone}" target="_blank" style="color:var(--biru)">${o.phone}</a></td><td><span class="badge ${o.status==='Baru'?'badge-new':'badge-done'}">${o.status}</span></td><td><button class="btn-action btn-view" onclick="viewOrder(${o.id})"><i class="fas fa-eye"></i></button><button class="btn-action btn-back" onclick="toggleStatus(${o.id})"><i class="fas fa-sync"></i></button><button class="btn-action btn-danger" onclick="deleteOrder(${o.id})"><i class="fas fa-trash"></i></button></td></tr>`).join('') : '<tr><td colspan="6" class="empty-state">Tidak ada data</td></tr>';
-}
-
-function updateStats() {
-    var orders = getOrders();
-    document.getElementById('totalOrders').innerText = orders.length;
-    document.getElementById('newOrders').innerText = orders.filter(o=>o.status==='Baru').length;
-    document.getElementById('totalPcs').innerText = orders.reduce((a,b)=>a+parseInt(b.qty),0);
-    document.getElementById('totalRevenue').innerText = 'Rp ' + orders.reduce((a,b)=>a+(b.price*b.qty),0).toLocaleString("id-ID");
-}
-
-function viewOrder(id) {
-    var o = getOrders().find(x=>x.id===id);
-    if(!o) return;
-    document.getElementById('adminOrderDetail').innerHTML = `
-        <img src="${o.img}" class="detail-img" onerror="this.src='${placeholderImg}'">
-        <div class="detail-row"><span>Kode</span><span>${o.code}</span></div>
-        <div class="detail-row"><span>Produk</span><span>${o.product}</span></div>
-        <div class="detail-row"><span>Pelanggan</span><span>${o.customer}</span></div>
-        <div class="detail-row"><span>WhatsApp</span><span><a href="https://wa.me/${o.phone}" style="color:var(--biru)">${o.phone}</a></span></div>
-        <div class="detail-row"><span>Ukuran</span><span>${o.size}</span></div>
-        <div class="detail-row"><span>Jumlah</span><span>${o.qty} pcs</span></div>
-        <div class="detail-row"><span>Total</span><span style="color:var(--merah);font-weight:bold">Rp ${(o.price*o.qty).toLocaleString("id-ID")}</span></div>
-        <div class="detail-row"><span>Status</span><span class="badge ${o.status==='Baru'?'badge-new':'badge-done'}">${o.status}</span></div>
-        <div class="detail-row"><span>Waktu</span><span>${o.date}</span></div>
-    `;
-    document.getElementById('adminOrderModal').style.display='flex';
-}
-
-function closeAdminModal() { document.getElementById('adminOrderModal').style.display='none'; }
-
-function toggleStatus(id) {
-    var orders = getOrders();
-    var idx = orders.findIndex(x=>x.id===id);
-    if(idx > -1) {
-        orders[idx].status = orders[idx].status==='Baru'?'Selesai':'Baru';
-        saveOrders(orders);
-        loadOrders();
-    }
-}
-
-function deleteOrder(id) {
-    if(confirm('Hapus pesanan ini?')) {
-        saveOrders(getOrders().filter(x=>x.id!==id));
-        loadOrders();
-        showToast("Pesanan dihapus","#da3633");
-    }
-}
-
-function clearOrders() {
-    if(confirm('Hapus SEMUA pesanan?')) {
-        saveOrders([]);
-        loadOrders();
-        showToast("Semua pesanan dihapus","#da3633");
-    }
-}
-
-function clearAllStorage() {
-    if(confirm('Hapus semua data lokal?')) {
-        localStorage.clear();
-        inMemoryOrders = [];
-        loadOrders();
-        showToast("Semua data dihapus","#da3633");
-    }
-}
-
-function addDummyData() {
-    var dummy = [
-        {id:1,code:"JSE-D01",product:"Jersey Dummy 1",price:85000,img:placeholderImg,customer:"Budi",phone:"08123456789",size:"L",qty:2,status:"Baru",date:"01/01/2024, 10:00:00"},
-        {id:2,code:"JSE-D02",product:"Jersey Dummy 2",price:90000,img:placeholderImg,customer:"Ani",phone:"08987654321",size:"M",qty:1,status:"Selesai",date:"01/02/2024, 12:00:00"}
-    ];
-    var orders = getOrders();
-    orders = orders.concat(dummy.filter(d => !orders.find(o=>o.id===d.id)));
-    saveOrders(orders);
+  var pass = document.getElementById('adminPassInput').value;
+  if(pass==='ecosport2024'){
+    document.getElementById('admin-login').style.display='none';
+    document.getElementById('admin-content').style.display='block';
     loadOrders();
-    showToast("Data dummy ditambahkan","#d29922");
+    showToast('Login berhasil!','success');
+  } else {
+    showToast('Sandi salah!','error');
+  }
 }
 
-function exportCSV() {
-    var orders = getOrders();
-    if(!orders.length) return showToast("Tidak ada data untuk diekspor","#da3633");
-    var csv = "Waktu,Kode,Produk,Harga,Nama,WA,Ukuran,Qty,Status\n";
-    orders.forEach(o => {
-        csv += `"${o.date}","${o.code}","${o.product}",${o.price},"${o.customer}","${o.phone}","${o.size}",${o.qty},"${o.status}"\n`;
+function switchTab(tab, el){
+  document.querySelectorAll('.menu-item').forEach(function(m){m.classList.remove('active');});
+  if(el) el.classList.add('active');
+  document.getElementById('admin-dashboard').style.display = tab==='dashboard'?'block':'none';
+  document.getElementById('admin-orders').style.display = tab==='orders'?'block':'none';
+  if(tab==='orders') loadOrders();
+}
+
+function loadOrders(){
+  var orders = JSON.parse(localStorage.getItem('ecoOrders')||'[]');
+  var search = document.getElementById('searchOrder')?document.getElementById('searchOrder').value.toLowerCase():'';
+  var status = document.getElementById('filterStatus')?document.getElementById('filterStatus').value:'all';
+  var filtered = orders.filter(function(o){
+    var matchSearch = o.name.toLowerCase().indexOf(search)>-1 || o.product.toLowerCase().indexOf(search)>-1;
+    var matchStatus = status==='all' || o.status===status;
+    return matchSearch && matchStatus;
+  });
+  filtered.sort(function(a,b){ return new Date(b.time)-new Date(a.time); });
+
+  var totalOrders = orders.length;
+  var newOrders = orders.filter(function(o){return o.status==='Baru';}).length;
+  var totalPcs = orders.reduce(function(s,o){return s+o.qty;},0);
+  var totalRevenue = orders.reduce(function(s,o){ var p = products.find(function(x){return o.product.indexOf(x.code)>-1;}); return s + (p?p.price*o.qty:0);},0);
+
+  document.getElementById('totalOrders').textContent = totalOrders;
+  document.getElementById('newOrders').textContent = newOrders;
+  document.getElementById('totalPcs').textContent = totalPcs;
+  document.getElementById('totalRevenue').textContent = 'Rp '+totalRevenue.toLocaleString('id-ID');
+
+  var recentHtml = '';
+  orders.slice(-5).reverse().forEach(function(o){
+    var badge = o.status==='Baru'?'<span class="badge badge-new">Baru</span>':'<span class="badge badge-done">Selesai</span>';
+    recentHtml += '<tr><td>'+o.id.slice(-6)+'</td><td>'+o.product.split('(')[0].trim()+'</td><td>'+o.name+'</td><td>'+o.size+'</td><td>'+o.qty+'</td><td>'+badge+'</td><td><button class="btn-action btn-view" onclick="viewOrder(\''+o.id+'\')"><i class="fas fa-eye"></i></button></td></tr>';
+  });
+  document.getElementById('recentOrdersTable').innerHTML = recentHtml || '<tr><td colspan="7" class="empty-state">Belum ada pesanan</td></tr>';
+
+  var allHtml = '';
+  filtered.forEach(function(o){
+    var badge = o.status==='Baru'?'<span class="badge badge-new">Baru</span>':'<span class="badge badge-done">Selesai</span>';
+    var date = new Date(o.time);
+    var timeStr = date.toLocaleDateString('id-ID')+' '+date.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});
+    allHtml += '<tr><td>'+timeStr+'</td><td>'+o.product.split('(')[0].trim()+'</td><td>'+o.name+'</td><td>'+o.size+' / '+o.qty+' pcs</td><td>'+badge+'</td><td><button class="btn-action btn-view" onclick="viewOrder(\''+o.id+'\')"><i class="fas fa-eye"></i> Detail</button>'+(o.status==='Baru'?'<button class="btn-action btn-refresh" onclick="markDone(\''+o.id+'\')"><i class="fas fa-check"></i> Selesai</button>':'')+'</td></tr>';
+  });
+  document.getElementById('allOrdersTable').innerHTML = allHtml || '<tr><td colspan="6" class="empty-state">Belum ada pesanan</td></tr>';
+}
+
+function viewOrder(id){
+  var orders = JSON.parse(localStorage.getItem('ecoOrders')||'[]');
+  var o = orders.find(function(x){return x.id===id;});
+  if(!o) return;
+  var p = products.find(function(x){return o.product.indexOf(x.code)>-1;});
+  var date = new Date(o.time);
+  var html = '<div style="margin-bottom:15px;"><img src="'+(p?p.img:'')+'" class="detail-img"></div>';
+  html += '<div class="detail-row"><span>ID Pesanan</span><span>'+o.id+'</span></div>';
+  html += '<div class="detail-row"><span>Produk</span><span>'+o.product+'</span></div>';
+  html += '<div class="detail-row"><span>Nama</span><span>'+o.name+'</span></div>';
+  html += '<div class="detail-row"><span>WhatsApp</span><span>'+o.phone+'</span></div>';
+  html += '<div class="detail-row"><span>Ukuran</span><span>'+o.size+'</span></div>';
+  html += '<div class="detail-row"><span>Jumlah</span><span>'+o.qty+' pcs</span></div>';
+  html += '<div class="detail-row"><span>Status</span><span>'+(o.status==='Baru'?'<span class="badge badge-new">Baru</span>':'<span class="badge badge-done">Selesai</span>')+'</span></div>';
+  html += '<div class="detail-row"><span>Waktu</span><span>'+date.toLocaleString('id-ID')+'</span></div>';
+  if(p) html += '<div class="detail-row"><span>Harga/pcs</span><span>Rp '+p.price.toLocaleString('id-ID')+'</span></div>';
+  if(p) html += '<div class="detail-row"><span>Total</span><span style="color:var(--merah);font-weight:bold;">Rp '+(p.price*o.qty).toLocaleString('id-ID')+'</span></div>';
+  document.getElementById('adminOrderDetail').innerHTML = html;
+  document.getElementById('adminOrderModal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeAdminModal(){
+  document.getElementById('adminOrderModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+function markDone(id){
+  var orders = JSON.parse(localStorage.getItem('ecoOrders')||'[]');
+  orders = orders.map(function(o){ if(o.id===id) o.status='Selesai'; return o; });
+  localStorage.setItem('ecoOrders', JSON.stringify(orders));
+  loadOrders();
+  showToast('Pesanan ditandai selesai!','success');
+}
+
+function clearOrders(){
+  if(!confirm('Hapus semua data pesanan?')) return;
+  localStorage.removeItem('ecoOrders');
+  loadOrders();
+  showToast('Semua pesanan dihapus','success');
+}
+
+function clearAllStorage(){
+  if(!confirm('Hapus semua data (pesanan & preferensi)?')) return;
+  localStorage.clear();
+  loadOrders();
+  showToast('Semua data dihapus','success');
+}
+
+function addDummyData(){
+  var dummyNames = ['Budi Santoso','Rina Wati','Agus Pratama','Siti Aminah','Dedi Kurniawan','Maya Sari','Eko Prasetyo','Nur Hidayah'];
+  var dummyOrders = JSON.parse(localStorage.getItem('ecoOrders')||'[]');
+  for(var i=0;i<3;i++){
+    var rp = products[Math.floor(Math.random()*products.length)];
+    dummyOrders.push({
+      id:'ORD-'+Date.now()+i,
+      product:rp.name+' ('+rp.code+')',
+      name:dummyNames[Math.floor(Math.random()*dummyNames.length)],
+      phone:'08'+Math.floor(Math.random()*1000000000),
+      size:['S','M','L','XL','XXL'][Math.floor(Math.random()*5)],
+      qty:Math.floor(Math.random()*5)+1,
+      status:Math.random()>0.5?'Baru':'Selesai',
+      time:new Date(Date.now()-Math.floor(Math.random()*7*24*60*60*1000)).toISOString()
     });
-    var blob = new Blob([csv], {type: "text/csv"});
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement("a");
-    a.href = url;
-    a.download = "pesanan_ecosport.csv";
-    a.click();
+  }
+  localStorage.setItem('ecoOrders', JSON.stringify(dummyOrders));
+  loadOrders();
+  showToast('3 data dummy ditambahkan!','success');
 }
 
-var toastTimeout;
-function showToast(msg, bg) {
-    var t = document.createElement("div");
-    t.className = "toast-notification";
-    t.style.background = bg || "#333";
-    t.innerHTML = '<i class="fas fa-info-circle"></i> ' + msg;
-    document.body.appendChild(t);
-    setTimeout(()=>t.classList.add('show'), 10);
-    setTimeout(()=>{t.classList.remove('show'); setTimeout(()=>t.remove(), 400);}, 3000);
+function exportCSV(){
+  var orders = JSON.parse(localStorage.getItem('ecoOrders')||'[]');
+  if(!orders.length){ showToast('Tidak ada data untuk diexport','error'); return; }
+  var csv = 'ID,Produk,Nama,WhatsApp,Ukuran,Qty,Status,Waktu\n';
+  orders.forEach(function(o){
+    csv += o.id+','+o.product+','+o.name+','+o.phone+','+o.size+','+o.qty+','+o.status+','+o.time+'\n';
+  });
+  var blob = new Blob([csv], {type:'text/csv'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'pesanan_eco_sport_'+new Date().toISOString().slice(0,10)+'.csv';
+  a.click();
+  showToast('CSV berhasil diexport!','success');
 }
 
-function toggleTheme() {
-    document.body.classList.toggle('light-mode');
-    var icon = document.querySelector('#theme-toggle-btn i');
-    if(document.body.classList.contains('light-mode')) {
-        icon.className = 'fas fa-moon';
-    } else {
-        icon.className = 'fas fa-sun';
+function showToast(msg, type){
+  var existing = document.querySelector('.toast-notification');
+  if(existing) existing.remove();
+  var toast = document.createElement('div');
+  toast.className = 'toast-notification';
+  toast.style.background = type==='success'?'#238636':type==='error'?'#da3633':'#1f6feb';
+  toast.innerHTML = '<i class="fas fa-'+(type==='success'?'check-circle':'exclamation-circle')+'"></i> '+msg;
+  document.body.appendChild(toast);
+  setTimeout(function(){toast.classList.add('show');},50);
+  setTimeout(function(){toast.classList.remove('show');setTimeout(function(){toast.remove();},400);},3000);
+}
+
+function toggleTheme(){
+  if(currentTheme==='dark'){
+    currentTheme='light';
+    document.body.classList.add('light-mode');
+    document.getElementById('theme-toggle-btn').innerHTML='<i class="fas fa-moon"></i>';
+  } else {
+    currentTheme='dark';
+    document.body.classList.remove('light-mode');
+    document.getElementById('theme-toggle-btn').innerHTML='<i class="fas fa-sun"></i>';
+  }
+  localStorage.setItem('eco-theme', currentTheme);
+}
+
+if(currentTheme==='light'){
+  document.body.classList.add('light-mode');
+  document.getElementById('theme-toggle-btn').innerHTML='<i class="fas fa-moon"></i>';
+}
+
+document.querySelectorAll('.modal-overlay').forEach(function(m){
+  m.addEventListener('click', function(e){
+    if(e.target===m){
+      m.style.display='none';
+      document.body.style.overflow='';
     }
-}
+  });
+});
+
+renderProducts();
 </script>
 </body>
 </html>
