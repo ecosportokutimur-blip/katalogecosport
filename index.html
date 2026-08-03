@@ -87,6 +87,16 @@ h1,h2,h3{font-family:'Rajdhani',sans-serif;text-transform:uppercase}
 .video-container{max-width:800px;margin:0 auto 60px;border:2px solid var(--merah);border-radius:10px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.5)}
 .video-container iframe{width:100%;aspect-ratio:16/9;display:block;border:0;}
 
+.video-promo-container{max-width:900px;margin:40px auto;padding:0 20px;text-align:center}
+.video-promo-title{font-family:'Audiowide',cursive;font-size:36px;color:var(--putih);margin-bottom:10px;letter-spacing:2px;text-transform:uppercase;animation:glowPulse 2s ease-in-out infinite alternate;position:relative;z-index:2}
+.video-promo-title span{color:var(--biru);animation:glowCyan 2s ease-in-out infinite alternate}
+@keyframes glowPulse{0%{text-shadow:0 0 5px rgba(225,6,0,0.8),0 0 10px rgba(225,6,0,0.6),0 0 20px rgba(225,6,0,0.4),0 0 30px rgba(225,6,0,0.2);color:#fff}100%{text-shadow:0 0 10px rgba(225,6,0,1),0 0 20px rgba(225,6,0,0.8),0 0 30px rgba(225,6,0,0.6),0 0 40px rgba(225,6,0,0.4),0 0 50px rgba(225,6,0,0.2);color:#ff4d4d}}
+@keyframes glowCyan{0%{text-shadow:0 0 5px rgba(0,240,255,0.8),0 0 10px rgba(0,240,255,0.6),0 0 20px rgba(0,240,255,0.4),0 0 30px rgba(0,240,255,0.2);color:#fff}100%{text-shadow:0 0 10px rgba(0,240,255,1),0 0 20px rgba(0,240,255,0.8),0 0 30px rgba(0,240,255,0.6),0 0 40px rgba(0,240,255,0.4),0 0 50px rgba(0,240,255,0.2);color:#00F0FF}}
+.video-promo-desc{color:#aaa;font-size:16px;margin-bottom:25px;max-width:600px;margin-left:auto;margin-right:auto;transition:color 0.4s}
+.video-promo-wrapper{border:2px solid var(--merah);border-radius:12px;overflow:hidden;box-shadow:0 0 25px rgba(225,6,0,0.4),0 10px 40px rgba(0,0,0,0.6);position:relative;transition:box-shadow 0.4s}
+.video-promo-wrapper:hover{box-shadow:0 0 35px rgba(225,6,0,0.7),0 0 60px rgba(0,240,255,0.3),0 15px 50px rgba(0,0,0,0.8)}
+.video-promo-wrapper iframe{width:100%;aspect-ratio:16/9;display:block;border:0;background:#000;}
+
 .fabric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:0 5% 40px;max-width:1400px;margin:0 auto}
 .fabric-card{background:#141414;border:1px solid #222;border-radius:10px;overflow:hidden;transition:0.3s;text-align:center}
 .fabric-card:hover{border-color:var(--merah);transform:translateY(-5px);box-shadow:0 10px 30px rgba(225,6,0,0.15)}
@@ -200,6 +210,7 @@ td{padding:15px;text-align:left;border-bottom:1px solid var(--border-admin);font
 .product-grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
 .product-img{height:280px}
 table{min-width:600px}
+.video-promo-title{font-size:24px}
 }
 
 #theme-toggle-btn{position:fixed;bottom:20px;right:20px;width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg, #1a1a1a, #333);color:#FFD700;border:2px solid #444;font-size:22px;cursor:pointer;z-index:1000;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(0,0,0,0.6);transition:0.3s}
@@ -232,6 +243,10 @@ body.light-mode .size-table th{background:#F3F4F6;color:#0284C7}
 body.light-mode .size-table td{border-bottom-color:#E5E7EB;color:#374151}
 body.light-mode .size-table tr:hover td{background:#F9FAFB}
 body.light-mode .video-container,body.light-mode .map-container{box-shadow:0 4px 12px rgba(0,0,0,0.1)}
+body.light-mode .video-promo-wrapper{box-shadow:0 0 15px rgba(225,6,0,0.2),0 4px 20px rgba(0,0,0,0.1)}
+body.light-mode .video-promo-title{color:#111;text-shadow:0 0 8px rgba(225,6,0,0.4)}
+body.light-mode .video-promo-title span{color:#0284C7;text-shadow:0 0 8px rgba(2,132,199,0.4)}
+body.light-mode .video-promo-desc{color:#4B5563}
 body.light-mode .closing-cta{background:linear-gradient(45deg,#F9FAFB,#E5E7EB);border-color:#D1D5DB}
 body.light-mode .closing-cta p{color:#4B5563}
 body.light-mode .modal-content{background:#FFFFFF;border-color:#E5E7EB}
@@ -294,6 +309,16 @@ body.light-mode #theme-toggle-btn{background:linear-gradient(135deg, #FFF, #E5E7
 <a href="https://ecosportokutimur-blip.github.io/jersey-eco-sport/" target="_blank" class="social-icon web"><i class="fas fa-globe"></i> Website</a>
 </div>
 </div>
+
+<!-- Video Proses di bawah sosmed -->
+<div class="video-promo-container">
+  <h2 class="video-promo-title">VIDEO <span>PROSES ECO SPORT</span></h2>
+  <p class="video-promo-desc">Saksikan kualitas dan proses produksi jersey premium ECO Sport dalam video eksklusif berikut ini!</p>
+  <div class="video-promo-wrapper">
+    <iframe https://go.screenpal.com/player/cOjecBnv2t8?ff=1&ahc=1&dcc=1&tl=1&bg=transparent&share=1&download=1&embed=1&cl=1&width=100%&height=100%&oembed=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+
 <div class="promo-banner">
 <div class="promo-card" onclick="showPromo('tim')"><div class="promo-icon">&#x1F525;</div><div class="promo-text"><h3>PROMO TIM</h3><p>Gratis Baju Jersey ECO Sport khusus pemesanan minimal 20 pcs.</p></div></div>
 <div class="promo-card" onclick="showPromo('bahan')"><div class="promo-icon">&#x1F455;</div><div class="promo-text"><h3>BAHAN BERKUALITAS</h3><p>Material premium adem, menyerap keringat, nyaman dipakai.</p></div></div>
