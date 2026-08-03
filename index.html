@@ -17,9 +17,10 @@ h1,h2,h3{font-family:'Rajdhani',sans-serif;text-transform:uppercase}
 .product-card, .product-img {will-change:transform; backface-visibility:hidden; -webkit-backface-visibility:hidden;}
 
 .catalog-header{text-align:center;padding:120px 20px 50px;position:relative;overflow:hidden;border-bottom:2px solid var(--merah);transition:background 0.4s ease}
-.catalog-header::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(0,0,0,0.0) 10px,rgba(0,0,0,0.0) 20px);z-index:1}
+/* Gradasi hitam dihilangkan (background:none) agar gambar jelas */
+.catalog-header::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:none;z-index:1;pointer-events:none;transition:background 0.4s ease}
 
-.header-bg-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0.4;z-index:0;pointer-events:none;animation:slowZoom 20s ease-in-out infinite alternate}
+.header-bg-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0.9;z-index:0;pointer-events:none;animation:slowZoom 20s ease-in-out infinite alternate}
 @keyframes slowZoom{0%{transform:scale(1)}100%{transform:scale(1.15)}}
 
 .catalog-header h1{
@@ -28,34 +29,25 @@ h1,h2,h3{font-family:'Rajdhani',sans-serif;text-transform:uppercase}
   position:relative;
   z-index:3;
   color:#fff;
-  -webkit-text-stroke: 2.5px #000;
+  -webkit-text-stroke: 3px #000;
   paint-order: stroke fill;
-  text-shadow:
-    -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000,
-    -3px 0 0 #000, 3px 0 0 #000, 0 -3px 0 #000, 0 3px 0 #000,
-    0 0 8px rgba(225,6,0,.9), 0 2px 4px rgba(225,6,0,.8), 0 4px 8px rgba(225,6,0,.5),
-    0 6px 12px rgba(225,6,0,.4), 0 12px 16px rgba(225,6,0,.3), 0 24px 24px rgba(225,6,0,.2);
+  text-shadow: 0 5px 15px rgba(0,0,0,1), 0 0 5px rgba(0,0,0,1);
   line-height:1.1;
   letter-spacing:2px;
   transition:color 0.4s, text-shadow 0.4s
 }
 .catalog-header h1 span{
   color:#fff;
-  -webkit-text-stroke: 2.5px #000;
+  -webkit-text-stroke: 3px #000;
   paint-order: stroke fill;
-  text-shadow:
-    -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000,
-    -3px 0 0 #000, 3px 0 0 #000, 0 -3px 0 #000, 0 3px 0 #000,
-    0 0 8px rgba(225,6,0,.9), 0 2px 4px rgba(225,6,0,.8), 0 4px 8px rgba(225,6,0,.5),
-    0 6px 12px rgba(225,6,0,.4), 0 12px 16px rgba(225,6,0,.3), 0 24px 24px rgba(225,6,0,.2);
 }
-.hero-subtitle{color:var(--biru);margin-top:20px;position:relative;z-index:3;font-family:'Rajdhani';font-size:24px;font-weight:700;letter-spacing:4px;text-shadow:0 0 10px rgba(0,240,255,0.5)}
-.hero-desc{color:#aaa;max-width:600px;margin:20px auto 0;position:relative;z-index:3;font-size:16px;line-height:1.6;transition:color 0.4s}
+.hero-subtitle{color:var(--biru);margin-top:20px;position:relative;z-index:3;font-family:'Rajdhani';font-size:24px;font-weight:700;letter-spacing:4px;text-shadow:0 0 5px #000, 0 2px 10px rgba(0,0,0,1), 0 0 15px rgba(0,240,255,0.5)}
+.hero-desc{color:#fff;max-width:600px;margin:20px auto 0;position:relative;z-index:3;font-size:16px;line-height:1.6;transition:color 0.4s;text-shadow:0 2px 8px rgba(0,0,0,1)}
 .header-logos{position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;pointer-events:none}
-.header-logo{position:absolute;top:25px;height:80px;object-fit:contain;filter:drop-shadow(0 10px 15px rgba(225,6,0,0.5));animation:logoSpin 8s linear infinite;pointer-events:auto}
+.header-logo{position:absolute;top:25px;height:80px;object-fit:contain;filter:drop-shadow(0 10px 15px rgba(0,0,0,0.8));animation:logoSpin 8s linear infinite;pointer-events:auto}
 .header-logo:first-child{left:30px}
 .header-logo:nth-child(2){right:30px;animation-delay:-4s}
-@keyframes logoSpin{0%{transform:rotateY(0deg);filter:drop-shadow(0 10px 15px rgba(225,6,0,0.5))}50%{filter:drop-shadow(0 25px 25px rgba(0,240,255,0.4))}100%{transform:rotateY(360deg);filter:drop-shadow(0 10px 15px rgba(225,6,0,0.5))}}
+@keyframes logoSpin{0%{transform:rotateY(0deg);filter:drop-shadow(0 10px 15px rgba(0,0,0,0.8))}50%{filter:drop-shadow(0 25px 25px rgba(0,240,255,0.4))}100%{transform:rotateY(360deg);filter:drop-shadow(0 10px 15px rgba(0,0,0,0.8))}}
 .top-info-bar{text-align:center;padding:12px 20px;background:#050505;border-bottom:1px solid #222;font-size:13px;color:#aaa;transition:background 0.4s, color 0.4s, border-color 0.4s}
 .top-info-bar p{margin:4px 0}
 .top-info-bar a{color:var(--biru);text-decoration:none;font-weight:600;transition:0.3s;font-size:15px}
@@ -88,10 +80,10 @@ h1,h2,h3{font-family:'Rajdhani',sans-serif;text-transform:uppercase}
 .video-container iframe{width:100%;aspect-ratio:16/9;display:block;border:0;}
 
 .video-promo-container{max-width:900px;margin:40px auto;padding:0 20px;text-align:center}
-.video-promo-title{font-family:'Audiowide',cursive;font-size:36px;color:var(--putih);margin-bottom:10px;letter-spacing:2px;text-transform:uppercase;animation:glowPulse 2s ease-in-out infinite alternate;position:relative;z-index:2}
-.video-promo-title span{color:var(--biru);animation:glowCyan 2s ease-in-out infinite alternate}
-@keyframes glowPulse{0%{text-shadow:0 0 5px rgba(225,6,0,0.8),0 0 10px rgba(225,6,0,0.6),0 0 20px rgba(225,6,0,0.4),0 0 30px rgba(225,6,0,0.2);color:#fff}100%{text-shadow:0 0 10px rgba(225,6,0,1),0 0 20px rgba(225,6,0,0.8),0 0 30px rgba(225,6,0,0.6),0 0 40px rgba(225,6,0,0.4),0 0 50px rgba(225,6,0,0.2);color:#ff4d4d}}
-@keyframes glowCyan{0%{text-shadow:0 0 5px rgba(0,240,255,0.8),0 0 10px rgba(0,240,255,0.6),0 0 20px rgba(0,240,255,0.4),0 0 30px rgba(0,240,255,0.2);color:#fff}100%{text-shadow:0 0 10px rgba(0,240,255,1),0 0 20px rgba(0,240,255,0.8),0 0 30px rgba(0,240,255,0.6),0 0 40px rgba(0,240,255,0.4),0 0 50px rgba(0,240,255,0.2);color:#00F0FF}}
+.video-promo-title{font-family:'Audiowide',cursive;font-size:36px;color:#fff;margin-bottom:10px;letter-spacing:2px;text-transform:uppercase;animation:glowPulse 2s ease-in-out infinite alternate;position:relative;z-index:2;-webkit-text-stroke:3.5px #050505;paint-order:stroke fill;text-shadow:-3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000, 0 6px 10px rgba(0,0,0,1)}
+.video-promo-title span{color:var(--biru);animation:glowCyan 2s ease-in-out infinite alternate;-webkit-text-stroke:3.5px #050505}
+@keyframes glowPulse{0%{text-shadow:-3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000, 0 0 8px rgba(225,6,0,0.8), 0 6px 10px rgba(0,0,0,1)}100%{text-shadow:-3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000, 0 0 15px rgba(225,6,0,1), 0 0 25px rgba(225,6,0,0.8), 0 6px 10px rgba(0,0,0,1)}}
+@keyframes glowCyan{0%{text-shadow:-3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000, 0 0 8px rgba(0,240,255,0.8)}100%{text-shadow:-3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000, 0 0 15px rgba(0,240,255,1), 0 0 25px rgba(0,240,255,0.8)}}
 .video-promo-desc{color:#aaa;font-size:16px;margin-bottom:25px;max-width:600px;margin-left:auto;margin-right:auto;transition:color 0.4s}
 .video-promo-wrapper{border:2px solid var(--merah);border-radius:12px;overflow:hidden;box-shadow:0 0 25px rgba(225,6,0,0.4),0 10px 40px rgba(0,0,0,0.6);position:relative;transition:box-shadow 0.4s}
 .video-promo-wrapper:hover{box-shadow:0 0 35px rgba(225,6,0,0.7),0 0 60px rgba(0,240,255,0.3),0 15px 50px rgba(0,0,0,0.8)}
@@ -200,7 +192,7 @@ td{padding:15px;text-align:left;border-bottom:1px solid var(--border-admin);font
 .main-admin{margin-left:0}
 .sidebar{width:100%;height:auto;position:relative}
 .catalog-header{padding:90px 15px 40px}
-.catalog-header h1{font-size:32px;-webkit-text-stroke:1.5px #000}
+.catalog-header h1{font-size:32px;-webkit-text-stroke:2px #000}
 .hero-subtitle{font-size:18px}
 .header-logo{height:45px;top:15px}
 .header-logo:first-child{left:15px}
@@ -209,7 +201,7 @@ td{padding:15px;text-align:left;border-bottom:1px solid var(--border-admin);font
 .product-grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
 .product-img{height:280px}
 table{min-width:600px}
-.video-promo-title{font-size:24px}
+.video-promo-title{font-size:24px;-webkit-text-stroke:2px #000}
 }
 
 #theme-toggle-btn{position:fixed;bottom:20px;right:20px;width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg, #1a1a1a, #333);color:#FFD700;border:2px solid #444;font-size:22px;cursor:pointer;z-index:1000;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(0,0,0,0.6);transition:0.3s}
@@ -218,9 +210,12 @@ table{min-width:600px}
 body.light-mode{--hitam:#F3F4F6;--putih:#111827;--abu:#E5E7EB;--bg-admin:#F9FAFB;--card-admin:#FFFFFF;--border-admin:#D1D5DB;--input-admin:#F3F4F6;--text-admin:#1F2937}
 body.light-mode #view-catalog{background:radial-gradient(circle at 50% 0%,#ffffff 0%,#F3F4F6 60%)}
 body.light-mode .catalog-header{background:#FFFFFF;border-bottom:2px solid var(--merah)}
-body.light-mode .catalog-header::before{background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(0,0,0,0.02) 10px,rgba(0,0,0,0.02) 20px)}
-body.light-mode .catalog-header h1,body.light-mode .catalog-header h1 span{color:#111;-webkit-text-stroke:1px #000;text-shadow:0 2px 4px rgba(0,0,0,0.15)}
-body.light-mode .hero-desc{color:#4B5563}
+/* Gradasi di mode light juga dihilangkan agar gambar tetap terlihat jelas */
+body.light-mode .catalog-header::before{background:none}
+body.light-mode .header-bg-img{opacity:0.8}
+body.light-mode .catalog-header h1,body.light-mode .catalog-header h1 span{color:#111;-webkit-text-stroke:1.5px #fff;text-shadow:0 2px 5px rgba(0,0,0,0.3)}
+body.light-mode .hero-subtitle{color:#0284C7;text-shadow:0 1px 2px rgba(0,0,0,0.2)}
+body.light-mode .hero-desc{color:#4B5563;text-shadow:none}
 body.light-mode .top-info-bar{background:#E5E7EB;color:#4B5563;border-bottom-color:#D1D5DB}
 body.light-mode .top-info-bar a{color:#0284C7}
 body.light-mode .top-social-bar{background:#F9FAFB;border-bottom-color:#D1D5DB}
@@ -243,8 +238,8 @@ body.light-mode .size-table td{border-bottom-color:#E5E7EB;color:#374151}
 body.light-mode .size-table tr:hover td{background:#F9FAFB}
 body.light-mode .video-container,body.light-mode .map-container{box-shadow:0 4px 12px rgba(0,0,0,0.1)}
 body.light-mode .video-promo-wrapper{box-shadow:0 0 15px rgba(225,6,0,0.2),0 4px 20px rgba(0,0,0,0.1)}
-body.light-mode .video-promo-title{color:#111;text-shadow:0 0 8px rgba(225,6,0,0.4)}
-body.light-mode .video-promo-title span{color:#0284C7;text-shadow:0 0 8px rgba(2,132,199,0.4)}
+body.light-mode .video-promo-title{color:#111;text-shadow:0 2px 4px rgba(0,0,0,0.15);-webkit-text-stroke:0px transparent;animation:none}
+body.light-mode .video-promo-title span{color:#0284C7;text-shadow:0 2px 4px rgba(0,0,0,0.15);-webkit-text-stroke:0px transparent;animation:none}
 body.light-mode .video-promo-desc{color:#4B5563}
 body.light-mode .closing-cta{background:linear-gradient(45deg,#F9FAFB,#E5E7EB);border-color:#D1D5DB}
 body.light-mode .closing-cta p{color:#4B5563}
@@ -382,7 +377,7 @@ body.light-mode #theme-toggle-btn{background:linear-gradient(135deg, #FFF, #E5E7
 </div>
 </div>
 
-<div class="section-title"><h2>KOLEKSI <span>JERSEY PILIHAN</span></h2><p>40 desain jersey premium siap pakai. Klik untuk detail & download gambar!</p></div>
+<div class="section-title"><h2>KOLEKSI <span>JERSEY PILIHAN</span></h2><p>40 desain jersey premium siap proses. Klik untuk detail & download gambar!</p></div>
 <div class="product-grid" id="productGrid"></div>
 
 <div class="section-title"><h2>LOKASI <span>KAMI</span></h2><p>Kunjungi toko fisik kami untuk lihat langsung bahan dan sampel baju jersey.</p></div>
@@ -537,8 +532,8 @@ var products = [
   {code:"JSE-V27",name:"Jersey Bakul Bakso Mbak Mai",price:85000,img:"https://z-cdn-media.chatglm.cn/files/8ee6f2b1-04d1-48da-80b8-9458c0bf3225.jpg?auth_key=1885668639-629262c78fe54622b89e53a3314f1756-0-a6cbda882ca24020dfc6ca188a43ee0f",specs:"Dryfit Premium / Fullprint / Black Cartoon Bakul Bakso Mbak Mai"},
   {code:"JSE-V28",name:"Jersey Voli Atlet Indonesia Green Gold",price:85000,img:"https://z-cdn-media.chatglm.cn/files/5e546ec5-53ee-4b08-b0df-b4ea1f34d9e8.jpg?auth_key=1885668639-f163e4c17b0e482781146c4762ad32fa-0-97989efd1436a2814582a425f17da205",specs:"Dryfit Premium / Fullprint / Dark Green Gold Volleyball Atlet Indonesia No 7"},
   {code:"JSE-V29",name:"Jersey KORPRI Blue Gold Longsleeve",price:110000,img:"https://z-cdn-media.chatglm.cn/files/ef0aab45-1ee3-4774-af22-265a4a433d91.jpg?auth_key=1885668639-93e3f9fce27040f78494e320bd6c3b09-0-6552637744fa68a8ce01b320b772dc6e",specs:"Dryfit Premium / Fullprint / Blue Gold Korpri Longsleeve"},
-  {code:"JSE-V30",name:"Jersey Polo Karang Taruna Metro Rejo",price:95000,img:"https://z-cdn-media.chatglm.cn/files/5e677d89-d67f-4a82-a3c7-b4fe5ca36dea.jpg?auth_key=1885668639-7ea6d43930ef41fab40664edb367d11f-0-42f09a988b8182ce1d9ffd9c1dfd53ad",specs:"Dryfit Premium / Fullprint / Dark Blue Polo Karang Taruna Metro Rejo"},
-  {code:"JSE-V31",name:"Jersey Voli Player Lurah EEE Black Orange",price:85000,img:"https://z-cdn-media.chatglm.cn/files/f28484ae-75cc-437d-84df-9efce8fe36c9.jpg?auth_key=1885668639-98ed196a514346149b086a508e626b05-0-441e5f34d4c74a2ce5a064af5de5c8d2",specs:"Dryfit Premium / Fullprint / Black Orange Fish Pattern Player No 6"},
+  {code:"JSE-V30",name:"Jersey Polo Karang Taruna Metro Rejo",price:95000,img:"https://z-cdn-media.chatglm.cn/files/5e677d89-d67f-4a82-a3c7-b4fe5ca36dea.jpg?auth_key=1885668639-7ea6d43930ef41fab40664edb36d11f-0-42f09a988b8182ce1d9ffd9c1dfd53ad",specs:"Dryfit Premium / Fullprint / Dark Blue Polo Karang Taruna Metro Rejo"},
+  {code:"JSE-V31",name:"Jersey Voli Player Lurah EEE Black Orange",price:85000,img:"https://z-cdn-media.chatglm.cn/files/f28484ae-75cc-437d-84df-9efce8fe36c9.jpg?auth_key=1885668639-98ed196a514346149b08a6a508e626b05-0-441e5f34d4c74a2ce5a064af5de5c8d2",specs:"Dryfit Premium / Fullprint / Black Orange Fish Pattern Player No 6"},
   {code:"JSE-V32",name:"Jersey Voli Indonesia 17 Red White",price:110000,img:"https://z-cdn-media.chatglm.cn/files/1765f177-33d5-475b-841a-b6b7f4520d7e.jpg?auth_key=1885668639-195fb7feb9c2438fa42b696c92203823-0-3343b5fa6ee0512e0b759fb3833391d4",specs:"Dryfit Premium / Fullprint / Red White Indonesia No 17"},
   {code:"JSE-V33",name:"Jersey Voli Lengot FC Jayapura",price:85000,img:"https://z-cdn-media.chatglm.cn/files/4374103f-34e3-4458-a729-44b467dbe114.jpg?auth_key=1885668639-33cca9539d5949229bd1c5498a941b82-0-3063f69ff62b0a8d8dd328b7ccf12208",specs:"Dryfit Premium / Fullprint / Red Black Lengot FC Jayapura No 5"},
   {code:"JSE-V34",name:"Jersey Voli Gaboja Blue Black",price:85000,img:"https://z-cdn-media.chatglm.cn/files/bd2c5a6a-9c43-427e-a7b9-a1a309cef6de.jpg?auth_key=1885668639-138b676dcb754f588f4e2ab521406421-0-bae5455125281271d4259791b7306410",specs:"Dryfit Premium / Fullprint / Blue Black Gaboja No 10"}
